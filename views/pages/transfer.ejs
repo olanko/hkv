@@ -12,19 +12,29 @@
   <div class="container">
     <label for="sto_from">Mistä</label>
     <select class="form-control" id="sto_from" name="sto_from">
-        <option value="0" default>Varasto</option>
+        <option value="0" selected>Varasto</option>
         <option value="1">Villipeura</option>
         <option value="2">Villikko</option>
         <option value="3">Villiruusu</option>
     </select>
     <label for="sto_dest">Minne</label>
-    <select class="form-control" name="sto_dest">
+    <select class="form-control" id="sto_dest" name="sto_dest">
         <option value="0">Varasto</option>
-        <option value="1" default>Villipeura</option>
+        <option value="1" selected>Villipeura</option>
         <option value="2">Villikko</option>
         <option value="3">Villiruusu</option>
     </select>
-    <a type="button" class="btn btn-lg btn-primary btn-block" href="#"><span class="glyphicon glyphicon-log-in"></span> Toimitus</a>
+
+    <label for="product">Mitä</label>
+    <select class="form-control" id="product" name="product">
+        <option value="0">Olvi III plo 0,33l</option>
+        <option value="1">Olvi IV plo 0,33l</option>
+        <option value="2">Fizz Päärynä tölkki 0,5l</option>
+    </select>
+    <label for="qty">Miten paljon</label>
+    <input class="form-control" type="text" id="qty" name="qty"/>
+
+    <button type="submit" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button>
   </div>
 </div>
 </body>
