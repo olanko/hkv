@@ -11,27 +11,36 @@
 <div class="jumbotron">
   <div class="container">
     <label for="sto_from">Mistä</label>
-    <select class="form-control" id="sto_from" name="sto_from">
-        <option value="0" selected>Varasto</option>
-        <option value="1">Villipeura</option>
-        <option value="2">Villikko</option>
-        <option value="3">Villiruusu</option>
-    </select>
-
-    <div class="btn-group">
-        <a class="btn btn-lg btn-default">Varasto</a>
-        <a class="btn btn-lg btn-primary">Villipeura</a>
-        <a class="btn btn-lg btn-primary">Villikko</a>
-        <a class="btn btn-lg btn-primary">Villiruusu</a>
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-primary active">
+        <input type="radio" name="sto_from" value="0" id="sto_from0" autocomplete="off" checked /> Varasto
+      </label>
+      <label class="btn btn-primary">
+        <input type="radio" name="sto_from" value="1" id="sto_from1" autocomplete="off" /> Villipeura
+      </label>
+      <label class="btn btn-primary">
+        <input type="radio" name="sto_from" value="2" id="sto_from2" autocomplete="off" /> Villikko
+      </label>
+      <label class="btn btn-primary">
+        <input type="radio" name="sto_from" value="3" id="sto_from3" autocomplete="off" /> Villiruusu
+      </label>
     </div><br>
 
     <label for="sto_dest">Minne</label>
-    <select class="form-control" id="sto_dest" name="sto_dest">
-        <option value="0">Varasto</option>
-        <option value="1" selected>Villipeura</option>
-        <option value="2">Villikko</option>
-        <option value="3">Villiruusu</option>
-    </select>
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-primary">
+        <input type="radio" name="sto_dest" value="0" id="sto_dest0" autocomplete="off" /> Varasto
+      </label>
+      <label class="btn btn-primary active">
+        <input type="radio" name="sto_dest" value="1" id="sto_dest1" autocomplete="off" checked /> Villipeura
+      </label>
+      <label class="btn btn-primary">
+        <input type="radio" name="sto_dest" value="2" id="sto_dest2" autocomplete="off" /> Villikko
+      </label>
+      <label class="btn btn-primary">
+        <input type="radio" name="sto_dest" value="3" id="sto_dest3" autocomplete="off" /> Villiruusu
+      </label>
+    </div><br>
 
     <label for="product">Mitä</label>
     <select class="form-control" id="product" name="product">
@@ -45,5 +54,7 @@
     <button type="submit" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button>
   </div>
 </div>
+
+<% include ../partials/footer.ejs %>
 </body>
 </html>
