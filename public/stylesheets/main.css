@@ -13,7 +13,8 @@
     border-color: #ccc;
 }
 .jumbotron .btn-primary:hover {
-    background: #7646c1;
+    color: #333;
+    background: #fff;
 }
 .navbar + .jumbotron {
     margin-top: -20px;
