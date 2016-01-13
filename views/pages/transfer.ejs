@@ -48,13 +48,22 @@
         <option value="1">Olvi IV plo 0,33l</option>
         <option value="2">Fizz Päärynä tölkki 0,5l</option>
     </select>
-    <label for="qty">Miten paljon</label>
-    <input class="form-control" type="text" id="qty" name="qty" value="24"/>
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            populateProducts($("#product"));
+            $("#product").change(function(e) { changeProduct($("#product")) });
+        });
+    </script>
 
-    <button type="submit" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button>
+    <label for="qty">Miten paljon</label>
+    <div class="btn-group" id="quickqtys"></div>
+    <input class="form-control" type="number" min="0" step="1" id="qty" name="qty" value="24"/>
+
+    <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button>
   </div>
 </div>
 
 <% include ../partials/footer.ejs %>
+<script type="text/javascript" src="/js/transfer.js"></script>
 </body>
 </html>
