@@ -1,5 +1,3 @@
-
-
 var products = [
     {"id": 0, "name": "Olvi III plo 0,33l", "qtys": [{"n": "24", q: 24}, {"n": "2x24", q: 48}, {"n": "3x24", q: 72}]},
     {"id": 1, "name": "Olvi IV plo 0,33l", "qtys": [{"n": "24", q: 24}, {"n": "2x24", q: 48}, {"n": "3x24", q: 72}]},
@@ -25,35 +23,34 @@ function setQty(qty) {
 }
 
 function populateProducts(s) {
-    console.log(s.val());
-    $.each(products, function (key, value) {
-        console.log(key, value);
+    $(s).empty();
+    $.each(products, function (key, p) {
+        s.append($('<option>', {
+            value: p.id,
+            text : p.name
+        }));
     });
 
     changeProduct(s);
 }
 
 function changeProduct(s) {
-    var pid = s.val();
+    var pid = $(s).val();
 
     if(!pid) {
         return;
     }
 
     var p = products[pid];
-    console.log(p);
     var quickQtys = p.qtys;
 
     if(!quickQtys) {
         return;
     }
 
-    console.log(quickQtys);
-
     $("#quickqtys").empty();
     _.forEach(quickQtys, function (q) {
-        console.log(q);
-        var b = $('<button type="button" class="btn btn-primary"></button>').html(q.n).click(function () { setQty(q.q); });
+        var b = $('<button type="button" class="btn btn-primary">').html(q.n).click(function () { setQty(q.q); });
         $("#quickqtys").append(b);
     });
 
@@ -65,12 +62,10 @@ function doTransfer (f) {
     var data = {};
     _.map($(f).serializeArray(), function (o) { data[o.name] = 0 | o.value; });
 
-    console.log(data);
     var p = findProduct(data.product);
 
     var t = 'Siirretty ' + data.qty + ' ' + p.name + ' ' + findStorage(data.sto_from).name + ' -> ' + findStorage(data.sto_dest).name;
 
-    console.log(t);
     $('#alerttext').html(t);
     $('#alerttext').show();
 }
