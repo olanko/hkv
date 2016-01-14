@@ -8,6 +8,8 @@
 <body>
 
   <% include ../partials/nav.ejs %>
+
+<form target="#">
 <div class="jumbotron">
   <div class="container">
     <label for="sto_from">Mistä</label>
@@ -59,9 +61,20 @@
     <div class="btn-group" id="quickqtys"></div>
     <input class="form-control" type="number" min="0" step="1" id="qty" name="qty" value="24"/>
 
-    <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button>
+    <button type="button" class="btn btn-primary btn-block" id="doTransfer"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button>
+
+    <div class="alert alert-info text-center" role="alert" id="alerttext"></div>
+
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $("#doTransfer").click(function(e) { doTransfer(this.form) });
+
+            $('#alerttext').hide();
+        });
+    </script>
   </div>
 </div>
+</form>
 
 <% include ../partials/footer.ejs %>
 <script type="text/javascript" src="/js/transfer.js"></script>

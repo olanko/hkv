@@ -6,6 +6,20 @@ var products = [
     {"id": 2, "name": "Fizz Päärynä tölkki 0,5l", "qtys": [{"n": "6", q: 6}, {"n": "2x6", q: 12}, {"n": "3x6", q: 18}]}
 ];
 
+var storages = [
+    {'id': 1, 'name': 'Varasto', 'default': 'true'},
+    {'id': 2, 'name': 'Villipeura'},
+    {'id': 3, 'name': 'Villikko'},
+    {'id': 4, 'name': 'Villiruusu'}
+];
+
+function findProduct (id) {
+    return products[id];
+}
+
+function findStorage (id) {
+    return storages[id];
+}
 function setQty(qty) {
     $("#qty").val(qty);
 }
@@ -46,3 +60,17 @@ function changeProduct(s) {
     setQty(quickQtys[0].q);
 }
 
+function doTransfer (f) {
+
+    var data = {};
+    _.map($(f).serializeArray(), function (o) { data[o.name] = 0 | o.value; });
+
+    console.log(data);
+    var p = findProduct(data.product);
+
+    var t = 'Siirretty ' + data.qty + ' ' + p.name + ' ' + findStorage(data.sto_from).name + ' -> ' + findStorage(data.sto_dest).name;
+
+    console.log(t);
+    $('#alerttext').html(t);
+    $('#alerttext').show();
+}
