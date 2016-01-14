@@ -70,6 +70,8 @@
             $("#doTransfer").click(function(e) { doTransfer(this.form) });
 
             $('#alerttext').hide();
+
+            $(this.form).submit(function (e) { e.cancel() ;});
         });
     </script>
   </div>
