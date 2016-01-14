@@ -8,10 +8,17 @@
   },
   "dependencies": {
     "body-parser": "^1.14.2",
+    "compression": "^1.6.0",
     "cookie-parser": "^1.4.1",
+    "cors": "^2.7.1",
     "ejs": "2.3.3",
     "express": "4.13.3",
     "lodash": "^3.10.1",
+    "loopback": "^2.26.2",
+    "loopback-boot": "^2.16.0",
+    "loopback-component-explorer": "^2.2.0",
+    "loopback-connector-postgresql": "^2.4.0",
+    "loopback-datasource-juggler": "^2.44.0",
     "morgan": "^1.6.1",
     "serve-favicon": "^2.3.0"
   },
