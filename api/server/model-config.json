@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Entitytype": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Comment": {
+    "dataSource": "pg",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Commententity": {
+    "dataSource": "pg",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Entity": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Product": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Storage": {
+    "dataSource": "pg",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Transfer": {
+    "dataSource": "pg",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  }
+}
