@@ -5,18 +5,18 @@ var products = [
 ];
 
 var storages = [
-    {'id': 1, 'name': 'Varasto', 'default': 'true'},
-    {'id': 2, 'name': 'Villipeura'},
-    {'id': 3, 'name': 'Villikko'},
-    {'id': 4, 'name': 'Villiruusu'}
+    {'id': 0, 'name': 'Varasto', 'default': true},
+    {'id': 1, 'name': 'Villipeura'},
+    {'id': 2, 'name': 'Villikko'},
+    {'id': 3, 'name': 'Villiruusu'}
 ];
 
 function findProduct (id) {
-    return products[id];
+    return _.find(products, { 'id' : id });
 }
 
 function findStorage (id) {
-    return storages[id];
+    return _.find(storages, { 'id' : id });
 }
 function setQty(qty) {
     $("#qty").val(qty);
