@@ -92,7 +92,7 @@ function changeProduct(s) {
         return;
     }
 
-    var p = products[pid];
+    var p = findProduct(pid);
     var quickQtys = p.qtys;
 
     if(!quickQtys) {
