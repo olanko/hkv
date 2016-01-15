@@ -12,7 +12,7 @@
     "cookie-parser": "^1.4.1",
     "cors": "^2.7.1",
     "ejs": "2.3.3",
-    "express": "4.13.3",
+    "express": "^4.13.3",
     "lodash": "^3.10.1",
     "loopback": "^2.26.2",
     "loopback-boot": "^2.16.0",
@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/olanko/hkv"
   },
   "keywords": [
     "node",
