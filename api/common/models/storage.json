@@ -42,6 +42,16 @@
         "nullable": "YES"
       },
       "_selectable": true
+    },
+    "def": {
+      "type": "Boolean",
+      "required": true,
+      "postgresql": {
+        "columnName": "def",
+        "dataType": "boolean",
+        "nullable": "NO"
+      },
+      "_selectable": true
     }
   },
   "validations": [],
