@@ -10,6 +10,38 @@
     "table": "transfer"
   },
   "properties": {
+    "fromstorageid": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 64,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "fromstorageid",
+        "dataType": "bigint",
+        "dataLength": null,
+        "dataPrecision": 64,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "productid": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 64,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "productid",
+        "dataType": "bigint",
+        "dataLength": null,
+        "dataPrecision": 64,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
     "user": {
       "type": "Number",
       "required": false,
@@ -18,6 +50,86 @@
       "scale": 0,
       "postgresql": {
         "columnName": "user",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "absolute": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 10,
+      "scale": 3,
+      "postgresql": {
+        "columnName": "absolute",
+        "dataType": "numeric",
+        "dataLength": null,
+        "dataPrecision": 10,
+        "dataScale": 3,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "relative": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 10,
+      "scale": 3,
+      "postgresql": {
+        "columnName": "relative",
+        "dataType": "numeric",
+        "dataLength": null,
+        "dataPrecision": 10,
+        "dataScale": 3,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "tostorageid": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 64,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "tostorageid",
+        "dataType": "bigint",
+        "dataLength": null,
+        "dataPrecision": 64,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "comment": {
+      "type": "String",
+      "required": false,
+      "length": 1000,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "comment",
+        "dataType": "character varying",
+        "dataLength": 1000,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "type": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "type",
         "dataType": "integer",
         "dataLength": null,
         "dataPrecision": 32,
@@ -59,22 +171,6 @@
       },
       "_selectable": false
     },
-    "storageid": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 64,
-      "scale": 0,
-      "postgresql": {
-        "columnName": "storageid",
-        "dataType": "bigint",
-        "dataLength": null,
-        "dataPrecision": 64,
-        "dataScale": 0,
-        "nullable": "YES"
-      },
-      "_selectable": true
-    },
     "transfertime": {
       "type": "String",
       "required": false,
@@ -90,22 +186,6 @@
         "nullable": "NO"
       },
       "_selectable": false
-    },
-    "productid": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 64,
-      "scale": 0,
-      "postgresql": {
-        "columnName": "productid",
-        "dataType": "bigint",
-        "dataLength": null,
-        "dataPrecision": 64,
-        "dataScale": 0,
-        "nullable": "YES"
-      },
-      "_selectable": true
     }
   },
   "validations": [],
