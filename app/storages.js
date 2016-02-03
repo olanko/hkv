@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
 var storages = [
-    {'id': 1, 'name': 'Varasto', 'default': true},
+    {'id': 1, 'name': 'Varasto', 'def': true},
     {'id': 2, 'name': 'Villipeura'},
     {'id': 3, 'name': 'Villikko'},
     {'id': 4, 'name': 'Villiruusu'}
