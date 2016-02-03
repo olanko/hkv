@@ -29,12 +29,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
-app.get('/transfer', function(request, response) {
-  response.render('pages/transfer');
-});
+
+
+app.use(require('./controllers'));
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
-
-
