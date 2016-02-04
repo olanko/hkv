@@ -1,9 +1,9 @@
-var products = [];
-// var products = [
-//     {"id": 0, "name": "Olvi III plo 0,33l", "qtys": [{"n": "24", q: 24}, {"n": "2x24", q: 48}, {"n": "3x24", q: 72}]},
-//     {"id": 1, "name": "Olvi IV plo 0,33l", "qtys": [{"n": "24", q: 24}, {"n": "2x24", q: 48}, {"n": "3x24", q: 72}]},
-//     {"id": 2, "name": "Fizz Päärynä tölkki 0,5l", "qtys": [{"n": "6", q: 6}, {"n": "2x6", q: 12}, {"n": "3x6", q: 18}]}
-// ];
+//var products = [];
+var products = [
+    {"id": 0, "name": "Olvi III plo 0,33l", "qtys": [{"n": "24", q: 24}, {"n": "2x24", q: 48}, {"n": "3x24", q: 72}]},
+    {"id": 1, "name": "Olvi IV plo 0,33l", "qtys": [{"n": "24", q: 24}, {"n": "2x24", q: 48}, {"n": "3x24", q: 72}]},
+    {"id": 2, "name": "Fizz Päärynä tölkki 0,5l", "qtys": [{"n": "6", q: 6}, {"n": "2x6", q: 12}, {"n": "3x6", q: 18}]}
+];
 
 // /* Populate pruducts table in db */
 
@@ -64,55 +64,6 @@ function findProduct (id) {
 
 function findStorage (id) {
     return _.find(storages, { 'id' : id });
-}
-function setQty(qty) {
-    $("#qty").val(qty);
-}
-
-function populateProducts(s) {
-    $(s).empty();
-
-    $.getJSON('/api/products')
-       .then(function (data) {
-           products = data;
-            $.each(products, function (key, p) {
-                // TODO: change
-                products[key].qtys = JSON.parse(p.qtys);
-                //console.log(key, products[key]);
-                s.append($('<option>', {
-                    value: p.id,
-                    text : p.name
-                }));
-            });
-            changeProduct(s);
-        })
-        .fail(function (error) {
-            console.log(error);
-        });
-}
-
-function changeProduct(s) {
-    var pid = $(s).val();
-
-    if(!pid) {
-        return;
-    }
-
-    var p = findProduct(pid);
-
-    var quickQtys = p.qtys;
-
-    if(!quickQtys) {
-        return;
-    }
-
-    $("#quickqtys").empty();
-    _.forEach(quickQtys, function (q) {
-        var b = $('<button type="button" class="btn btn-primary">').html(q.n).click(function () { setQty(q.q); });
-        $("#quickqtys").append(b);
-    });
-
-    setQty(quickQtys[0].q);
 }
 
 function doTransfer (f) {

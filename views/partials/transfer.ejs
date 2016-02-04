@@ -1,0 +1,53 @@
+<script type="text/javascript" src="/js/transfer.js"></script>
+<div ng-controller="TransferCtrl">
+
+<form target="#">
+<div class="jumbotron">
+  <div class="container">
+    <label for="sto_from">Mistä</label>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary" ng-class="{active: s.id == 0}" ng-repeat="s in storages | orderBy: 'id'">
+            <input type="radio" name="sto_from" ng-model="sto_from" value="{{ s.id }}"
+                autocomplete="off" ng-checked="s.id == 0" /> {{ s.name }}
+        </label>
+    </div><br>
+
+    <label for="sto_dest">Minne</label>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary" ng-class="{active: s.id == 1}" ng-repeat="s in storages | orderBy: 'id'">
+            <input type="radio" name="sto_dest" ng-model="sto_dest" value="{{ s.id }}"
+                autocomplete="off" ng-checked="s.id == 1" /> {{ s.name }}
+        </label>
+    </div><br>
+
+    <label for="product">Mitä</label>
+    <select class="form-control" id="product" name="product" ng-init="0" ng-model="product" ng-change="changeProduct()">
+        <option ng-repeat="p in products | orderBy: 'id'" ng-value="p.id">{{ p.name }}</option>
+    </select>
+
+    <label for="qty">Miten paljon</label>
+    <div id="qtybuttons" class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary" ng-class="{active: q.q == qty}" ng-repeat="q in qtys">
+            <input type="radio" value="{{ q.q }}" name="quickQty" ng-model="quickQty" uib-btn-radio="q.q" ng-change="changeQuickQty()"
+                autocomplete="off"  />{{ q.n }}
+        </label>
+    </div>
+    <input class="form-control" type="number" min="0" step="1" id="qty" name="qty" ng-model="qty" value="24" ng-init="24"/>
+
+    <button type="button" class="btn btn-primary btn-block" id="doTransfer"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button>
+
+    <div class="alert alert-info text-center" role="alert" id="alerttext"></div>
+
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $("#doTransfer").click(function(e) { doTransfer(this.form) });
+
+            $('#alerttext').hide();
+
+            $(this.form).submit(function (e) { e.cancel() ;});
+        });
+    </script>
+  </div>
+</div>
+</form>
+</div>
