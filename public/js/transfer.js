@@ -71,6 +71,8 @@ function doTransfer (f) {
     var data = {};
     _.map($(f).serializeArray(), function (o) { data[o.name] = 0 | o.value; });
 
+    console.log(data);
+
     var p = findProduct(data.product);
 
     var t = 'Siirretty ' + data.qty + ' ' + p.name + ' ' + findStorage(data.sto_from).name + ' -> ' + findStorage(data.sto_dest).name;

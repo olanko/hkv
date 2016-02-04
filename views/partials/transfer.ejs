@@ -1,23 +1,24 @@
 <script type="text/javascript" src="/js/transfer.js"></script>
 <div ng-controller="TransferCtrl">
 
+{{ newtransfer }}
+
 <form target="#">
 <div class="jumbotron">
   <div class="container">
     <label for="sto_from">Mistä</label>
     <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary" ng-class="{active: s.id == 0}" ng-repeat="s in storages | orderBy: 'id'">
-            <input type="radio" name="sto_from" ng-model="newtransfer.sto_from" uib-btn-radio="s.id" value="{{ s.id }}"
-                autocomplete="off" ng-checked="s.id == 0" /> {{ s.name }}
+        <label class="btn btn-primary" ng-class="{active: s.id == newtransfer.sto_from.id}" ng-repeat="s in storages | orderBy: 'id'">
+            <input type="radio" name="sto_from" ng-model="newtransfer.sto_from" value="{{ s.id }}"
+                ng-checked="s.id == newtransfer.sto_from.id" /> {{ s.name }}
         </label>
     </div><br>
 
     <label for="sto_dest">Minne</label>
-    {{ newtransfer.sto_dest || 'asd' }}
     <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary" ng-class="{active: s.id == 1}" ng-repeat="s in storages | orderBy: 'id'">
-            <input type="radio" name="sto_dest" ng-model="newtransfer.sto_dest" uib-btn-radio="s.id" value="{{ s.id }}"
-                autocomplete="off" ng-checked="s.id == 1" /> {{ s.name }}
+        <label class="btn btn-primary" ng-class="{active: s.id == newtransfer.sto_dest.id}" ng-repeat="s in storages | orderBy: 'id'">
+            <input type="radio" name="sto_dest" ng-model="newtransfer.sto_dest" value="{{ s.id }}"
+                ng-checked="s.id == newtransfer.sto_dest.id" /> {{ s.name }}
         </label>
     </div><br>
 

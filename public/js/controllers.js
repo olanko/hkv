@@ -9,7 +9,10 @@ angular.module('hkApp.controllers', [])
 })
 
 .controller('TransferCtrl', function  ($scope, $http) {
-    $scope.newtransfer = {};
+    $scope.newtransfer = {
+        sto_from: 0,
+        sto_dest: 1
+    };
 
     $http.get('/api/products')
         .success(function (data) {
@@ -21,6 +24,9 @@ angular.module('hkApp.controllers', [])
     $http.get('/api/storages')
         .success(function (data) {
             $scope.storages = data;
+
+            $scope.newtransfer.sto_from = $scope.storages[0];
+            $scope.newtransfer.sto_dest = $scope.storages[1];
         });
 
     $scope.changeProduct = function () {
@@ -38,7 +44,10 @@ angular.module('hkApp.controllers', [])
     };
 
     $scope.addTransfer = function () {
-        $scope.alerttext = $scope.newtransfer.qty;
+        var n = $scope.newtransfer;
+        var t = 'Siirretty ' + n.qty + ' ' + n.product.name + ' ' + n.sto_from.name + ' -> ' + n.sto_dest.name;
+        $('#alerttext').html(t);
+        $('#alerttext').show();
     };
 })
 
