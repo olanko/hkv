@@ -9,10 +9,12 @@ angular.module('hkApp.controllers', [])
 })
 
 .controller('TransferCtrl', function  ($scope, $http) {
+    $scope.newtransfer = {};
+
     $http.get('/api/products')
         .success(function (data) {
             $scope.products = data;
-            $scope.product = $scope.products[0];
+            $scope.newtransfer.product = $scope.products[0];
         });
     $http.get('/api/storages')
         .success(function (data) {
@@ -20,16 +22,22 @@ angular.module('hkApp.controllers', [])
         });
 
     $scope.changeProduct = function () {
-        var p = $scope.products[$scope.product];
+        var p = $scope.products[$scope.newtransfer.product];
         $scope.qtys = JSON.parse(p.qtys);
 
-        $scope.quickQty = $scope.qtys[0].q;
-        $scope.qty = $scope.qtys[0].q;
+        var q = $scope.qtys[0].q;
+        $scope.newtransfer.quickQty = q;
+        $scope.newtransfer.qty = q;
     };
 
     $scope.changeQuickQty = function (q) {
-        alert($scope.quickQty);
+        $scope.newtransfer.qty = q;
     };
+
+    $scope.addTransfer = function () {
+        console.log($scope);
+    };
+
 })
 
 .controller('TransfersCtrl', function  ($scope, $http) {
