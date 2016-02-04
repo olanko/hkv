@@ -15,6 +15,8 @@ angular.module('hkApp.controllers', [])
         .success(function (data) {
             $scope.products = data;
             $scope.newtransfer.product = $scope.products[0];
+
+            $scope.changeProduct();
         });
     $http.get('/api/storages')
         .success(function (data) {
@@ -22,22 +24,22 @@ angular.module('hkApp.controllers', [])
         });
 
     $scope.changeProduct = function () {
-        var p = $scope.products[$scope.newtransfer.product];
+        var p = $scope.newtransfer.product;
         $scope.qtys = JSON.parse(p.qtys);
 
         var q = $scope.qtys[0].q;
-        $scope.newtransfer.quickQty = q;
         $scope.newtransfer.qty = q;
     };
 
-    $scope.changeQuickQty = function (q) {
+    $scope.changeQuickQty = function (q, e) {
         $scope.newtransfer.qty = q;
+
+        console.log(e);
     };
 
     $scope.addTransfer = function () {
-        console.log($scope);
+        $scope.alerttext = $scope.newtransfer.qty;
     };
-
 })
 
 .controller('TransfersCtrl', function  ($scope, $http) {
