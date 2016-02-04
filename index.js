@@ -26,11 +26,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function(request, response) {
-  response.render('pages/index');
-});
-
-
 app.use(require('./controllers'));
 
 app.listen(app.get('port'), function() {
