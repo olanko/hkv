@@ -8,10 +8,12 @@ angular.module('hkApp.controllers', [])
         });
 })
 
-.controller('TransferCtrl', function  ($scope, $http) {
+.controller('TransferCtrl', ['$scope', '$http', function  ($scope, $http) {
     $scope.newtransfer = {
-        sto_from: 0,
-        sto_dest: 1
+        stofrom: {},
+        stodest: {},
+        product: {},
+        qty: 0
     };
 
     $http.get('/api/products')
@@ -25,8 +27,8 @@ angular.module('hkApp.controllers', [])
         .success(function (data) {
             $scope.storages = data;
 
-            $scope.newtransfer.sto_from = $scope.storages[0];
-            $scope.newtransfer.sto_dest = $scope.storages[1];
+            $scope.newtransfer.stofrom = $scope.storages[0];
+            $scope.newtransfer.stodest = $scope.storages[1];
         });
 
     $scope.changeProduct = function () {
@@ -45,11 +47,11 @@ angular.module('hkApp.controllers', [])
 
     $scope.addTransfer = function () {
         var n = $scope.newtransfer;
-        var t = 'Siirretty ' + n.qty + ' ' + n.product.name + ' ' + n.sto_from.name + ' -> ' + n.sto_dest.name;
+        var t = 'Siirretty ' + n.qty + ' ' + n.product.name + ' ' + n.stofrom.name + ' -> ' + n.stodest.name;
         $('#alerttext').html(t);
         $('#alerttext').show();
     };
-})
+}])
 
 .controller('TransfersCtrl', function  ($scope, $http) {
     $http.get('/api/transfers')
