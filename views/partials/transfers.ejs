@@ -1,13 +1,10 @@
-{{ transfers }}
-<script type="text/ng-template" id="myTooltipTemplate.html">
-    <span>Special Tooltip with <strong>markup</strong> and {{ dynamicTooltipText }}</span>
-</script>
 <div>
-    <p ng-repeat="t in transfers">
-        <span am-time-ago="t.transfertime"
+    <p ng-repeat="t in transfers | orderBy: 'transfertime'">
+<!--         <span am-time-ago="t.transfertime"
         uib-tooltip="{{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}"></span>
-        : {{ t.comment }}
+ -->
+        {{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}
+        {{ types[t.type] }} {{ t.relative | number: 0 }} {{ products[t.productid].name }}
+        {{ storages[t.fromstorageid].name }} -> {{ storages[t.tostorageid].name }}
     </p><br/>
 </div>
-
-<span am-time-ago="datenow"></span> {{ datenow | amDateFormat:'DD.MM.YYYY HH:mm:ss' }}
