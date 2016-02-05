@@ -44,14 +44,6 @@
     <div class="text-center" role="alert" id="alerttext">
         <uib-alert ng-repeat="alert in alerts | orderBy : '-time'" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
     </div>
-
-    <script type="text/javascript">
-        $( document ).ready(function() {
-            $('#alerttext').hide();
-
-            $(this.form).submit(function (e) { e.cancel() ;});
-        });
-    </script>
   </div>
 </div>
 </form>
