@@ -1,24 +1,22 @@
-<script type="text/javascript" src="/js/transfer.js"></script>
 <div ng-controller="TransferCtrl">
-
-{{ newtransfer }}
 
 <form target="#">
 <div class="jumbotron">
   <div class="container">
-    <label for="sto_from">Mistä</label>
+
+    <label for="stofrom">Mistä</label>
     <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary" ng-class="{active: s.id == newtransfer.sto_from.id}" ng-repeat="s in storages | orderBy: 'id'">
-            <input type="radio" name="sto_from" ng-model="newtransfer.sto_from" value="{{ s.id }}"
-                ng-checked="s.id == newtransfer.sto_from.id" /> {{ s.name }}
+        <label class="btn btn-primary" ng-class="{active: s.id == newtransfer.stofrom.id}" ng-repeat="s in storages | orderBy: 'id'">
+            <input type="radio" name="stofrom" ng-model="newtransfer.stofrom" ng-value="s"
+                ng-checked="s.id == newtransfer.stofrom.id" /> {{ s.name }}
         </label>
     </div><br>
 
-    <label for="sto_dest">Minne</label>
+    <label>Minne</label>
     <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary" ng-class="{active: s.id == newtransfer.sto_dest.id}" ng-repeat="s in storages | orderBy: 'id'">
-            <input type="radio" name="sto_dest" ng-model="newtransfer.sto_dest" value="{{ s.id }}"
-                ng-checked="s.id == newtransfer.sto_dest.id" /> {{ s.name }}
+        <label class="btn btn-primary" ng-class="{active: s.id == newtransfer.stodest.id}" ng-repeat="s in storages | orderBy: 'id'">
+            <input type="radio" name="stodest" ng-model="newtransfer.stodest" ng-value="s"
+                ng-checked="s.id == newtransfer.stodest.id" /> {{ s.name }}
         </label>
     </div><br>
 
@@ -27,28 +25,28 @@
         <option ng-repeat="p in products | orderBy: 'id'" ng-value="p.id" >{{ p.name }}</option>
     </select> -->
 
-    <select class="form-control" name="product" ng-model="newtransfer.product" uib-btn-radio="p.id" ng-change="changeProduct()" ng-options="product.name for product in products" >
+    <select class="form-control" name="product" ng-model="newtransfer.product" ng-change="changeProduct()" ng-options="product.name for product in products" >
     </select>
 
     <label for="qty">Miten paljon</label>
     <div id="qtybuttons" class="btn-group">
-        <button class="btn btn-primary" ng-class="{active: newstransfer.qty == q.q}" ng-repeat="q in qtys" ng-click="changeQuickQty(q.q, this)" uib-btn-radio="q.q"
+        <button class="btn btn-primary" ng-class="{active: newstransfer.qty == q.q}" ng-repeat="q in qtys" ng-click="changeQuickQty(q.q, this)"
                 autocomplete="off">{{ q.n }}
         </button>
     </div>
 
     <input class="form-control" type="number" min="0" step="1" id="qty" name="qty" ng-model="newtransfer.qty" value="24" ng-init="24"/>
 
-    <button type="button" class="btn btn-primary btn-block" id="doTransfer"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button>
+<!--     <button type="button" class="btn btn-primary btn-block" id="doTransfer"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button> -->
 
     <button type="button" class="btn btn-primary btn-block" ng-click="addTransfer()"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button>
 
-    <div class="alert alert-info text-center" role="alert" id="alerttext" ng-model="alerttext"></div>
+    <div class="text-center" role="alert" id="alerttext">
+        <uib-alert ng-repeat="alert in alerts | orderBy : '-time'" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+    </div>
 
     <script type="text/javascript">
         $( document ).ready(function() {
-            $("#doTransfer").click(function(e) { doTransfer(this.form) });
-
             $('#alerttext').hide();
 
             $(this.form).submit(function (e) { e.cancel() ;});
