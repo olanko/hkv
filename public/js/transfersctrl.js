@@ -4,6 +4,7 @@ angular.module('hkApp.controllers')
     function  ($scope, $http, Storage, Transfer) {
         $scope.transfers = [];
         $scope.storages = [];
+        $scope.datenow = moment();
 
         Transfer.find()
             .$promise

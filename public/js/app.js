@@ -25,5 +25,6 @@ config(function ($routeProvider, $locationProvider) {
     });
 
   $locationProvider.html5Mode(true);
+}).run(function(amMoment) {
+    amMoment.changeLocale('fi');
 });
-
