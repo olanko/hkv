@@ -16,6 +16,8 @@ angular.module('hkApp.controllers', [])
         qty: 0
     };
 
+    $scope.alerts = [];
+
     $http.get('/api/products')
         .success(function (data) {
             $scope.products = data;
@@ -45,11 +47,15 @@ angular.module('hkApp.controllers', [])
         console.log(e);
     };
 
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
+
     $scope.addTransfer = function () {
         var n = $scope.newtransfer;
         var t = 'Siirretty ' + n.qty + ' ' + n.product.name + ' ' + n.stofrom.name + ' -> ' + n.stodest.name;
-        $('#alerttext').html(t);
-        $('#alerttext').show();
+
+        $scope.alerts.push({time: moment(), msg: t});
     };
 }])
 
