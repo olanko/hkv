@@ -1,5 +1,5 @@
 
-angular.module('hkApp', ['hkApp.controllers', 'ngRoute']).
+angular.module('hkApp', ['hkApp.controllers', 'ngRoute', 'ui.bootstrap']).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.
     when('/transfers', {
