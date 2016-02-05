@@ -1,5 +1,7 @@
-<div ng-controller="TransfersCtrl">
+{{ transfers }}
 <div ng-repeat="t in transfers">
-    <p>{{ t.inputtime }}: {{ t.comment }}</p><br/>
+    <p>{{ t.transfertime }}: {{ t.comment }}</p><br/>
 </div>
-</div>
+
+
+{{ storages[transfers[0].tostorageid].name }}
