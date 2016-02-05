@@ -7,11 +7,11 @@
       <li>
         <a href="#storage"><span class="glyphicon glyphicon-glass"></span> Varasto</a>
       </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-info-sign"></span> Raportteja <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
+      <li uib-dropdown>
+        <a href="#" uib-dropdown-toggle role="button"><span class="glyphicon glyphicon-info-sign"></span> Raportteja <span class="caret"></span></a>
+          <ul uib-dropdown-menu class="dropdown-menu" role="menu">
             <li><a href="#">Varaston tilanne</a></li>
-            <li><a href="#">Tapahtumat</a></li>
+            <li><a href="/transfers">Tapahtumat</a></li>
           </ul>
       </li>
     </ul>

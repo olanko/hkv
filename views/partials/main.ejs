@@ -15,11 +15,8 @@
     <div class="col-md-6">
       <h3><span class="glyphicon glyphicon-info-sign"></span> Varastot</h3>
       <ul>
-        <li><a href="#">Päävarasto</a></li>
+        <li ng-repeat="s in storages | orderBy: 'id'"><a ng-href="/storage/{{s.id}}">{{s.name}}</a></li>
 
-        <li><a href="#">Villipeura</a></li>
-        <li><a href="#">Villikko</a></li>
-        <li><a href="#">Villiruusu</a></li>
       </ul>
     </div>
     <div class="col-md-6">

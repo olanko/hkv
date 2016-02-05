@@ -1,10 +1,8 @@
 angular.module('hkApp.controllers', [])
 .controller('MainCtrl', function  ($scope, $http) {
-    $http.get('/api/products')
+    $http.get('/api/storages')
         .success(function (data) {
-            $scope.products = data.products;
-
-            console.log(data);
+            $scope.storages = data;
         });
 })
 
