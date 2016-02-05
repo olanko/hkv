@@ -1,5 +1,11 @@
 
-angular.module('hkApp', ['hkApp.controllers', 'ngRoute', 'ui.bootstrap']).
+angular.module('hkApp', [
+    'hkApp.controllers',
+    'ngRoute',
+    'ui.bootstrap',
+    'lbServices',
+    'angularMoment'
+]).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.
     when('/transfers', {
