@@ -1,5 +1,5 @@
 angular.module('hkApp.controllers')
-.controller('TransferCtrl', ['$scope', '$http', function  ($scope, $http) {
+.controller('TransferCtrl', ['$scope', '$http', 'Transfer', function  ($scope, $http, Transfer) {
     $scope.newtransfer = {
         stofrom: {},
         stodest: {},
@@ -43,8 +43,31 @@ angular.module('hkApp.controllers')
 
     $scope.addTransfer = function () {
         var n = $scope.newtransfer;
+
         var t = 'Siirretty ' + n.qty + ' ' + n.product.name + ' ' + n.stofrom.name + ' -> ' + n.stodest.name;
 
-        $scope.alerts.push({time: moment(), msg: t});
+        Transfer.create({
+            "fromstorageid": n.stofrom.id,
+            "tostorageid": n.stodest.id,
+            "productid": n.product.id,
+            "user": 0,
+            "absolute": 0,
+            "relative": n.qty,
+            "comment": "",
+            "type": 0
+            //"id": 0,
+            //"inserttime": "string",
+            //"transfertime": "string"
+        })
+        .$promise
+        .then(function (transfer, err) {
+            if (err) {
+                $scope.alerts.push({time: moment(), msg: err});
+                return;
+            }
+            $scope.alerts.push({time: moment(), msg: t});
+        });
+
+
     };
 }]);
