@@ -35,17 +35,15 @@
         </button>
     </div>
 
-    <input class="form-control" type="number" min="0" step="1" id="qty" name="qty" ng-model="newtransfer.qty" value="24" ng-init="24"/>
+    <input class="form-control" type="number" min="0" step="1" id="qty" name="qty" ng-model="newtransfer.qty"/>
 
-<!--     <button type="button" class="btn btn-primary btn-block" id="doTransfer"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button> -->
+    <button type="button" class="btn btn-primary btn-block" ng-click="addTransfer()"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button>
 
     <style type="text/css">
         .alertdeleted {
             color:red; text-decoration: line-through;
         }
     </style>
-    <button type="button" class="btn btn-primary btn-block" ng-click="addTransfer()"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button>
-
     <div class="text-center" role="alert" id="alerttext">
         <uib-alert ng-repeat="alert in alerts | orderBy : '-time'"
             type="{{alert.type}}"
