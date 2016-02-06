@@ -17,7 +17,7 @@ app.set('port', (process.env.PORT || 5000));
 console.log(process.env);
 
 if (env == 'production') {
-    app.use(enforce.HTTPS());
+    app.use(enforce.HTTPS({ trustProtoHeader: true }));
 }
 
 var api = require('./api/server/server');
