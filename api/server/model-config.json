@@ -14,22 +14,22 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "pg"
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "pg",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "pg",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "pg",
     "public": false
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "pg",
     "public": false
   },
   "Entitytype": {
