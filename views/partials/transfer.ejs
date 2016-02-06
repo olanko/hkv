@@ -39,10 +39,25 @@
 
 <!--     <button type="button" class="btn btn-primary btn-block" id="doTransfer"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button> -->
 
+    <style type="text/css">
+        .alertdeleted {
+            color:red; text-decoration: line-through;
+        }
+    </style>
     <button type="button" class="btn btn-primary btn-block" ng-click="addTransfer()"><span class="glyphicon glyphicon-log-in"></span> Siirrä</button>
 
     <div class="text-center" role="alert" id="alerttext">
-        <uib-alert ng-repeat="alert in alerts | orderBy : '-time'" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+        <uib-alert ng-repeat="alert in alerts | orderBy : '-time'"
+            type="{{alert.type}}"
+            close="closeAlert($index)">
+
+            <span ng-class="{alertdeleted: alert.deleted}">
+
+            <span ng-if="alert.transferid > 0" class="glyphicon glyphicon-trash" ng-click="undoTransfer(alert.transferid)" uib-tooltip="Poista"></span>
+            {{alert.msg}}
+
+            </span>
+        </uib-alert>
     </div>
   </div>
 </div>
