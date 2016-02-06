@@ -1,13 +1,29 @@
 angular.module('hkApp.controllers')
 .controller('TransfersCtrl',
-    ['$scope', '$http', 'Storage', 'Product', 'Transfer',
-    function  ($scope, $http, Storage, Product, Transfer) {
+    ['$scope', '$http', '$routeParams', 'Storage', 'Product', 'Transfer',
+    function  ($scope, $http, $routeParams, Storage, Product, Transfer) {
+        $scope.storageid = $routeParams.storageid;
+        $scope.productid = $routeParams.productid;
+
         $scope.transfers = [];
         $scope.storages = [];
         $scope.products = [];
         $scope.datenow = moment();
 
         $scope.types = ['Siirto', 'Toimitus', 'Myynti'];
+
+        var where = {};
+        if ($scope.storageid > 0) {
+
+            where.tostorageid = $scope.storageid;
+        }
+        if ($scope.productid > 0) {
+            where.productid = $scope.productid;
+        }
+
+        console.log(where);
+
+        //{ filter: { where: { tostorageid: 1 }} }
 
         Transfer.find()
             .$promise
