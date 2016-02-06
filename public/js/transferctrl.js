@@ -1,11 +1,21 @@
 angular.module('hkApp.controllers')
-.controller('TransferCtrl', ['$scope', '$http', 'Transfer', function  ($scope, $http, Transfer) {
+.controller('TransferCtrl', ['$scope', '$http', '$routeParams', 'Transfer',
+    function  ($scope, $http, $routeParams, Transfer) {
     $scope.newtransfer = {
         stofrom: {},
         stodest: {},
         product: {},
+        relative: 0,
+        absolute: 0,
         qty: 0
     };
+
+    $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario'];
+    $scope.type = 0;
+    if ($routeParams.type > 0) {
+        $scope.type = $routeParams.type;
+    }
+    console.log($scope.type);
 
     $scope.alerts = [];
 
@@ -59,15 +69,22 @@ angular.module('hkApp.controllers')
 
         var t = '' + n.qty + ' ' + n.product.name + ' ' + n.stofrom.name + ' -> ' + n.stodest.name;
 
+        var absolute = 0;
+        var relative = n.qty;
+        if ($scope.useAbsolute) {
+            absolute = qty;
+            relative = 0;
+        }
+
         Transfer.create({
             "fromstorageid": n.stofrom.id,
             "tostorageid": n.stodest.id,
             "productid": n.product.id,
             "user": 0,
-            "absolute": 0,
-            "relative": n.qty,
+            "absolute": absolute,
+            "relative": relative,
             "comment": "",
-            "type": 0
+            "type": $scope.type
             //"id": 0,
             //"inserttime": "string",
             //"transfertime": "string"
