@@ -7,9 +7,18 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var express = require('express');
+var enforce = require('express-sslify');
+
 var app = express();
+var env = process.env.NODE_ENV || 'development';
 
 app.set('port', (process.env.PORT || 5000));
+
+console.log(process.env);
+
+if (env == 'production') {
+    app.use(enforce.HTTPS());
+}
 
 var api = require('./api/server/server');
 app.use('/api', api);
