@@ -37,6 +37,19 @@ angular.module('hkApp.controllers')
         $scope.newtransfer.qty = q;
     };
 
+    $scope.undoTransfer = function (id) {
+        var index = _.findIndex($scope.alerts, ['transferid', id]);
+
+        Transfer.deleteById({ id: id })
+         .$promise
+         .then(function () {
+
+            $scope.alerts[index].transferid = 0;
+            $scope.alerts[index].deleted = true;
+            $scope.alerts[index].type = 'warning';
+        });
+    };
+
     $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
     };
@@ -44,7 +57,7 @@ angular.module('hkApp.controllers')
     $scope.addTransfer = function () {
         var n = $scope.newtransfer;
 
-        var t = 'Siirretty ' + n.qty + ' ' + n.product.name + ' ' + n.stofrom.name + ' -> ' + n.stodest.name;
+        var t = '' + n.qty + ' ' + n.product.name + ' ' + n.stofrom.name + ' -> ' + n.stodest.name;
 
         Transfer.create({
             "fromstorageid": n.stofrom.id,
@@ -65,7 +78,7 @@ angular.module('hkApp.controllers')
                 $scope.alerts.push({time: moment(), msg: err});
                 return;
             }
-            $scope.alerts.push({time: moment(), msg: t});
+            $scope.alerts.push({transferid: transfer.id, type: 'success', time: moment(), msg: t});
         });
 
 
