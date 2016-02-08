@@ -10,6 +10,10 @@ angular.module('hkApp.controllers')
         qty: 0
     };
 
+    $scope.config = {
+        useAbsolute: false
+    };
+
     $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario'];
     $scope.type = 0;
     if ($routeParams.type > 0) {
@@ -71,7 +75,7 @@ angular.module('hkApp.controllers')
 
         var absolute = 0;
         var relative = n.qty;
-        if ($scope.useAbsolute) {
+        if ($scope.config.useAbsolute) {
             absolute = qty;
             relative = 0;
         }
