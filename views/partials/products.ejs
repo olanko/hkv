@@ -1,5 +1,16 @@
 <div>
-    <p ng-repeat="p in products | orderBy: 'name'">
-        {{p.name}}
-    </p><br/>
+    <table class="table" ng-model="products">
+        <thead>
+            <!-- <th></th> -->
+            <th>Nimi</th>
+            <th>Oletukset</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="p in products | orderBy: 'name'">
+            <!-- <td>{{p.id}}</td> -->
+            <td>{{p.name}}</td>
+            <td><span ng-repeat="q in p.qs"><span ng-if="!$first">, </span>{{q.n}}: {{q.q}}</span></td>
+        </tr>
+        </tbody>
+    </table>
 </div>

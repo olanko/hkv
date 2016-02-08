@@ -9,6 +9,10 @@ angular.module('hkApp.controllers')
             .$promise
             .then(function (data) {
                 $scope.products = data;
+
+                _($scope.products).forEach(function (i) {
+                    i.qs = JSON.parse(i.qtys);
+                });
             });
     }
 ]);
