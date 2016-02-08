@@ -58,6 +58,16 @@
         "nullable": "YES"
       },
       "_selectable": true
+    },
+    "active": {
+      "type": "Boolean",
+      "required": true,
+      "postgresql": {
+        "columnName": "active",
+        "dataType": "boolean",
+        "nullable": "NO"
+      },
+      "_selectable": true
     }
   },
   "validations": [],

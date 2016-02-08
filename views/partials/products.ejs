@@ -1,13 +1,16 @@
 <div>
     <table class="table" ng-model="products">
         <thead>
-            <!-- <th></th> -->
+            <th>Näkyvissä</th>
             <th>Nimi</th>
             <th>Oletukset</th>
         </thead>
         <tbody>
         <tr ng-repeat="p in products | orderBy: 'name'">
-            <!-- <td>{{p.id}}</td> -->
+            <td>
+                <span ng-show="p.active" class="text-success glyphicon glyphicon-ok" ng-click="toggleActive(p)" uib-tooltip="Näkyvissä"></span>
+                <span ng-show="!p.active" class="text-danger glyphicon glyphicon-remove" ng-click="toggleActive(p)" uib-tooltip="Piilossa"></span>
+            </td>
             <td>{{p.name}}</td>
             <td><span ng-repeat="q in p.qs"><span ng-if="!$first">, </span>{{q.n}}: {{q.q}}</span></td>
         </tr>

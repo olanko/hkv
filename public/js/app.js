@@ -5,6 +5,7 @@ angular.module('hkApp', [
     'ui.bootstrap',
     'lbServices',
     'angularMoment'
+    //'ui.grid'
 ]).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.

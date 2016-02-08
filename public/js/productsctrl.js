@@ -4,7 +4,6 @@ angular.module('hkApp.controllers')
     function  ($scope, $http, $routeParams, Product, Transfer) {
         $scope.products = [];
 
-
         Product.find()
             .$promise
             .then(function (data) {
@@ -14,5 +13,10 @@ angular.module('hkApp.controllers')
                     i.qs = JSON.parse(i.qtys);
                 });
             });
+
+        $scope.toggleActive = function (product) {
+            product.active = !product.active;
+            product.$save();
+        };
     }
 ]);
