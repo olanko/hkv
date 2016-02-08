@@ -1,4 +1,5 @@
-<div>
+<div class="jumbotron">
+  <div class="container">
     <table class="table" ng-model="products">
         <thead>
             <th>Näkyvissä</th>
@@ -16,4 +17,33 @@
         </tr>
         </tbody>
     </table>
+
+    <div class="container">
+        <label for="product.name">Nimi</label>
+        <input class="form-control" type="text" id="product.name" name="product.name" ng-model="product.name"/>
+        <button type="button" class="btn btn-primary btn-block" ng-click="addProduct()">Lisää</button>
+    </div>
+
+    <style type="text/css">
+        .alertdeleted {
+            color:red; text-decoration: line-through;
+        }
+    </style>
+
+    <div class="text-center" role="alert" id="alerttext">
+        <uib-alert ng-repeat="alert in alerts | orderBy : '-time'"
+            type="{{alert.type}}"
+            close="closeAlert($index)">
+
+            <span ng-class="{alertdeleted: alert.deleted}"><a href=""></a>
+
+            <span ng-if="alert.objid > 0" class="glyphicon glyphicon-trash" ng-click="undoAdd(alert.objid)" uib-tooltip="Poista"></span>
+
+            {{alert.msg}}
+
+            </span>
+        </uib-alert>
+    </div>
+
+  </div>
 </div>
