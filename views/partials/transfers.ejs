@@ -4,7 +4,7 @@
         uib-tooltip="{{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}"></span>
  -->
         {{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}
-        {{ types[t.type] }} {{ t.relative | number: 0 }} {{ products[t.productid].name }}
-        {{ storages[t.fromstorageid].name }} -> {{ storages[t.tostorageid].name }}
+        {{ types[t.type] }} {{ t.relative | number: 0 }} {{ t.absolute | number: 0 }} {{ products[t.productid].name }}
+        {{ storages[t.fromstorageid].name }} -> {{ storages[t.tostorageid].name }} {{ t.comment }}
     </p><br/>
 </div>
