@@ -1,6 +1,6 @@
 angular.module('hkApp.controllers')
-.controller('TransferCtrl', ['$scope', '$http', '$routeParams', 'Transfer',
-    function  ($scope, $http, $routeParams, Transfer) {
+.controller('TransferCtrl', ['$scope', '$http', '$routeParams', 'Product', 'Storage', 'Transfer',
+    function  ($scope, $http, $routeParams, Product, Storage, Transfer) {
     $scope.newtransfer = {
         stofrom: {},
         stodest: {},
@@ -23,15 +23,23 @@ angular.module('hkApp.controllers')
 
     $scope.alerts = [];
 
-    $http.get('/api/products')
-        .success(function (data) {
+    Product.find()
+        .$promise
+        .then(function (data) {
             $scope.products = data;
+
+            _($scope.products).forEach(function (i) {
+                i.qs = JSON.parse(i.qtys);
+            });
+
             $scope.newtransfer.product = $scope.products[0];
 
             $scope.changeProduct();
         });
-    $http.get('/api/storages')
-        .success(function (data) {
+
+    Storage.find()
+        .$promise
+        .then(function (data) {
             $scope.storages = data;
 
             $scope.newtransfer.stofrom = $scope.storages[0];
@@ -40,11 +48,7 @@ angular.module('hkApp.controllers')
 
     $scope.changeProduct = function () {
         var p = $scope.newtransfer.product;
-        $scope.qtys = JSON.parse(p.qtys);
-
-        var q = $scope.qtys[0].q;
-
-        $scope.changeQuickQty(q);
+        $scope.changeQuickQty(p.qs[0].q);
     };
 
     $scope.changeQuickQty = function (q) {

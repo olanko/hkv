@@ -20,16 +20,13 @@
     </div><br>
 
     <label for="product">Mitä</label>
-<!--     <select class="form-control" name="product" ng-model="newtransfer.product" uib-btn-radio="p.id" ng-change="changeProduct()" ng-init="newtransfer.product = products[0]">
-        <option ng-repeat="p in products | orderBy: 'id'" ng-value="p.id" >{{ p.name }}</option>
-    </select> -->
 
-    <select class="form-control" name="product" ng-model="newtransfer.product" ng-change="changeProduct()" ng-options="product.name for product in products" >
+    <select class="form-control" name="product" ng-model="newtransfer.product" ng-change="changeProduct()" ng-options="product.name for product in products | orderBy: 'pid' | filter: { active: true }" >
     </select>
 
     <label for="qty">Miten paljon</label>
     <div id="qtybuttons" class="btn-group">
-        <button class="btn btn-primary" ng-class="{active: newstransfer.qty == q.q}" ng-repeat="q in qtys" ng-click="changeQuickQty(q.q, this)"
+        <button class="btn btn-primary" ng-class="{active: newstransfer.qty == q.q}" ng-repeat="q in qs" ng-click="changeQuickQty(q.q, this)"
                 autocomplete="off">{{ q.n }}
         </button>
     </div>
