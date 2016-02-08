@@ -1,7 +1,14 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+var morgan = require('morgan');
 
 var app = module.exports = loopback();
+
+var env = process.env.NODE_ENV || 'development';
+
+if (env === 'development') {
+  app.middleware('routes:before', morgan('dev'));
+}
 
 app.start = function() {
   // start the web server
