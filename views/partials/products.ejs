@@ -21,7 +21,12 @@
     <div class="container">
         <label for="product.name">Nimi</label>
         <input class="form-control" type="text" id="product.name" name="product.name" ng-model="product.name"/>
+
+        <label for="product.unitQty">Pakkauskoko</label>
+        <input class="form-control" type="number" min="0" step="1" id="product.unitQty" name="product.unitQty" ng-model="product.unitQty"/>
+
         <button type="button" class="btn btn-primary btn-block" ng-click="addProduct()">Lisää</button>
+
     </div>
 
     <style type="text/css">

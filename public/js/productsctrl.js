@@ -35,7 +35,15 @@ angular.module('hkApp.controllers')
 
             var t = 'Lisätty: ' + p.name;
 
-            p.qtys = '[{"n":"24","q":24},{"n":"2x24","q":48},{"n":"3x24","q":72}]';
+            var q = [];
+            var n = p.unitQty;
+
+            q.push({'n': '' + n, 'q': n});
+            for (var i = 2; i <= 4; i++) {
+                q.push({'n': '' + i + 'x' + n, 'q': i*n});
+            }
+
+            p.qtys = JSON.stringify(q);
             p.active = true;
 
             Product.create(p)
