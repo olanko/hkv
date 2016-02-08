@@ -26,7 +26,7 @@
 
     <label for="qty">Miten paljon</label>
     <div id="qtybuttons" class="btn-group">
-        <button class="btn btn-primary" ng-class="{active: newstransfer.qty == q.q}" ng-repeat="q in qs" ng-click="changeQuickQty(q.q, this)"
+        <button class="btn btn-primary" ng-class="{active: newstransfer.qty == q.q}" ng-repeat="q in newtransfer.product.qs" ng-click="changeQuickQty(q.q, this)"
                 autocomplete="off">{{ q.n }}
         </button>
     </div>
