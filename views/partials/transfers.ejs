@@ -1,10 +1,35 @@
-<div>
-    <p ng-repeat="t in transfers | orderBy: 'transfertime'">
-<!--         <span am-time-ago="t.transfertime"
-        uib-tooltip="{{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}"></span>
- -->
-        {{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}
-        {{ types[t.type] }} {{ t.relative | number: 0 }} {{ t.absolute | number: 0 }} {{ products[t.productid].name }}
-        {{ storages[t.fromstorageid].name }} -> {{ storages[t.tostorageid].name }} {{ t.comment }}
-    </p><br/>
+<div class="container">
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary" ng-class="{active: filters.storage == s}" ng-repeat="s in storages | orderBy: 'id'">
+            <input type="radio" name="filters.storage" ng-model="filters.storage" uncheckable uib-btn-radio="s"/> {{ s.name }}
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table table-striped" ng-model="transfers">
+        <thead>
+            <th></th>
+            <th>Tapahtuma</th>
+            <th>Tuote</th>
+            <th>Mistä</th>
+            <th>Minne</th>
+            <th>Määrä</th>
+            <th>Kommentti</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="t in transfers | orderBy: 'transfertime'">
+        <!--         <span am-time-ago="t.transfertime"
+                uib-tooltip="{{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}"></span>
+         -->
+                <td>{{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}</td>
+                <td>{{ types[t.type] }}</td>
+                <td>{{ t.relative | number: 0 }} {{ t.absolute | number: 0 }}</td>
+                <td>{{ products[t.productid].name }}</td>
+                <td>{{ storages[t.fromstorageid].name }}</td>
+                <td>{{ storages[t.tostorageid].name }}</td>
+                <td>{{ t.comment }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

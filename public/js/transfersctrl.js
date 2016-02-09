@@ -10,6 +10,8 @@ angular.module('hkApp.controllers')
         $scope.products = [];
         $scope.datenow = moment();
 
+        $scope.filters = {};
+
         $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario'];
 
         var where = {};
