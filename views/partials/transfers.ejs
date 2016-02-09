@@ -1,7 +1,7 @@
 <div class="container">
     <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-primary" ng-class="{active: filters.storage == s}" ng-repeat="s in storages | orderBy: 'id'">
-            <input type="radio" name="filters.storage" ng-model="filters.storage" uncheckable uib-btn-radio="s"/> {{ s.name }}
+            <input type="radio" name="filters.storage" ng-model="filters.storage" uncheckable uib-btn-radio="s" ng-click="findTransfers()" /> {{ s.name }}
         </label>
     </div>
 </div>

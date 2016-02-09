@@ -14,24 +14,29 @@ angular.module('hkApp.controllers')
 
         $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario'];
 
-        var where = {};
-        if ($scope.storageid > 0) {
+        // if ($scope.productid > 0) {
+        //     where.productid = $scope.productid;
+        // }
 
-            where.tostorageid = $scope.storageid;
-        }
-        if ($scope.productid > 0) {
-            where.productid = $scope.productid;
-        }
+        $scope.findTransfers = function () {
+            var where = '';
+            var filter = {};
+            if ($scope.filters.storage) {
+                var s = $scope.filters.storage;
 
-        console.log(where);
+                where = { 'or': [ {'fromstorageid': s.id}, {'tostorageid': s.id} ]};
+            }
 
-        //{ filter: { where: { tostorageid: 1 }} }
-
-        Transfer.find()
-            .$promise
-            .then(function (data) {
-                $scope.transfers = data;
-            });
+            if (where) {
+                filter = {'filter': {'where': where}};
+            }
+            Transfer.find(filter)
+                .$promise
+                .then(function (data) {
+                    $scope.transfers = data;
+                });
+            };
+        $scope.findTransfers();
 
         Storage.find()
             .$promise
