@@ -91,7 +91,7 @@ angular.module('hkApp.controllers')
             "user": 0,
             "absolute": absolute,
             "relative": relative,
-            "comment": "",
+            "comment": n.comment,
             "type": $scope.type
             //"id": 0,
             //"inserttime": "string",
@@ -104,6 +104,7 @@ angular.module('hkApp.controllers')
                 return;
             }
             $scope.alerts.push({transferid: transfer.id, type: 'success', time: moment(), msg: t});
+            $scope.newtransfer.comment = '';
         });
 
 
