@@ -38,22 +38,7 @@ angular.module('hkApp.controllers')
             };
         $scope.findTransfers();
 
-        Storage.find()
-            .$promise
-            .then(function (data) {
-                /* Make array index match id:s */
-                _(data).forEach(function (i) {
-                    $scope.storages[i.id] = i;
-                });
-            });
-
-        Product.find()
-            .$promise
-            .then(function (data) {
-                /* Make array index match id:s */
-                _(data).forEach(function (i) {
-                    $scope.products[i.id] = i;
-                });
-            });
+        $scope.storages = Storage.find();
+        $scope.products = Product.find();
     }
 ]);

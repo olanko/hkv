@@ -6,11 +6,16 @@ update product set name = 'Fizz Päärynä tölkki 0,33l' where id = 2;
 
 delete from product where id in (25, 26, 27);
 
-select * from transfer;
+select * from transfer where fromstorageid = 0 or tostorageid = 0;
 
-delete from transfer WHERE id in (213, 214, 216);
+delete from transfer WHERE id in (251, 254, 256);
 
 select * from storage;
+
+delete from storage where id = 4;
+
+update transfer set fromstorageid = 11 where fromstorageid = 4;
+
 
 
 insert into storage (name, def, type) values ('Respa', false, 0);

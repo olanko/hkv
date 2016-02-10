@@ -30,9 +30,9 @@
             <tr ng-repeat="t in transfers | orderBy: 'transfertime' | filter: {productid: product.id}" ng-model="transfers">
                 <td>{{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}</td>
                 <td>{{ types[t.type] }}</td>
-                <td>{{ products[t.productid].name }}</td>
-                <td>{{ storages[t.fromstorageid].name }}</td>
-                <td>{{ storages[t.tostorageid].name }}</td>
+                <td>{{ (products | filter: {id: t.productid})[0].name }}</td>
+                <td>{{ (storages | filter: {id: t.fromstorageid})[0].name }}</td>
+                <td>{{ (storages | filter: {id: t.tostorageid})[0].name }}</td>
                 <td><span ng-show="t.type !== 3">{{ t.change | number: 0 }}</span></td>
                 <td ng-class="t.class">{{ t.runningvalue | number: 0 }}</td>
                 <td>{{ t.comment }}</td>

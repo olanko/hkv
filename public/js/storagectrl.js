@@ -7,10 +7,10 @@ angular.module('hkApp.controllers')
         $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario'];
 
         $scope.storage = {};
-        $scope.storages = {};
+        $scope.storages = [];
         $scope.product = {};
-        $scope.products = {};
-        $scope.transfers = {};
+        $scope.products = [];
+        $scope.transfers = [];
 
         var where = { 'or': [ {'fromstorageid': storageid}, {'tostorageid': storageid} ]};
         var filter = {'filter': {'where': where, 'order': 'transfertime'}};
@@ -25,11 +25,11 @@ angular.module('hkApp.controllers')
                 $scope.product = data[0];
             });
 
-
         $scope.transfers = Transfer.find(filter);
 
         var runningvalues = {};
 
+        /* Find current qtys or all products */
         $scope.transfers
             .$promise
             .then(function (data) {

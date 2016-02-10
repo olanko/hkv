@@ -24,6 +24,7 @@
             <th>Tuote</th>
             <th>Mistä</th>
             <th>Minne</th>
+            <th>Muutos</th>
             <th>Määrä</th>
             <th>Kommentti</th>
         </thead>
@@ -34,10 +35,11 @@
          -->
                 <td>{{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}</td>
                 <td>{{ types[t.type] }}</td>
-                <td>{{ products[t.productid].name }}</td>
-                <td>{{ storages[t.fromstorageid].name }}</td>
-                <td>{{ storages[t.tostorageid].name }}</td>
-                <td>{{ t.relative | number: 0 }} {{ t.absolute | number: 0 }}</td>
+                <td>{{ (products | filter: {id: t.productid})[0].name }}</td>
+                <td>{{ (storages | filter: {id: t.fromstorageid})[0].name }}</td>
+                <td>{{ (storages | filter: {id: t.tostorageid})[0].name }}</td>
+                <td>{{ t.relative | number: 0 }}</td>
+                <td>{{ t.absolute | number: 0 }}</td>
                 <td>{{ t.comment }}</td>
             </tr>
         </tbody>
