@@ -33,9 +33,9 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/products',
       controller: 'ProductsCtrl'
     }).
-    when('/storages', {
-      templateUrl: 'partials/storages',
-      controller: 'StoragesCtrl'
+    when('/storage/:storageid', {
+      templateUrl: 'partials/storage',
+      controller: 'StorageCtrl'
     }).
     when('/', {
       templateUrl: 'partials/main',

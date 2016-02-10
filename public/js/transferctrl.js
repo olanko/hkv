@@ -158,7 +158,7 @@ angular.module('hkApp.controllers')
         var absolute = 0;
         var relative = n.qty;
         if (options.useAbsolute) {
-            absolute = qty;
+            absolute = n.qty;
             relative = 0;
         }
         var factor = 1.0;
