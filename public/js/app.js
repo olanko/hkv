@@ -17,6 +17,18 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/transfer',
       controller: 'TransferCtrl'
     }).
+    when('/delivery', {
+      templateUrl: 'partials/transfer',
+      controller: 'TransferCtrl'
+    }).
+    when('/sales', {
+      templateUrl: 'partials/transfer',
+      controller: 'TransferCtrl'
+    }).
+    when('/inventory', {
+      templateUrl: 'partials/transfer',
+      controller: 'TransferCtrl'
+    }).
     when('/products', {
       templateUrl: 'partials/products',
       controller: 'ProductsCtrl'
