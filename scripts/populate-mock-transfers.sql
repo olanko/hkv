@@ -14,11 +14,11 @@ insert into transfer (fromstorageid, tostorageid, productid, transfertime, "user
 insert into transfer (fromstorageid, tostorageid, productid, transfertime, "user", absolute, relative, comment, type)
 	values (0, 2, 0, '2016-01-02 14:00', 0, 0, 48, '', 0);
 insert into transfer (fromstorageid, tostorageid, productid, transfertime, "user", absolute, relative, comment, type)
-	values (null, 0, 0, '2016-01-02 15:00', 0, 0, 120, 'Olvi', 1);
+	values (4, 0, 0, '2016-01-02 15:00', 0, 0, 120, 'Olvi', 1);
 insert into transfer (fromstorageid, tostorageid, productid, transfertime, "user", absolute, relative, comment, type)
 	values (0, 1, 0, '2016-01-02 16:00', 0, 0, 24, '', 0);
 insert into transfer (fromstorageid, tostorageid, productid, transfertime, "user", absolute, relative, comment, type)
-	values (null, 0, 0, '2016-01-02 17:00', 0, 0, -120, '', 2);
+	values (1, null, 0, '2016-01-02 17:00', 0, 0, -120, '', 2);
 
 
 
