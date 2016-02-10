@@ -34,7 +34,7 @@
                 <td>{{ storages[t.fromstorageid].name }}</td>
                 <td>{{ storages[t.tostorageid].name }}</td>
                 <td><span ng-show="t.type !== 3">{{ t.change | number: 0 }}</span></td>
-                <td ng-class="t.class">{{ t.runningvalue }}</td>
+                <td ng-class="t.class">{{ t.runningvalue | number: 0 }}</td>
                 <td>{{ t.comment }}</td>
             </tr>
         </tbody>
