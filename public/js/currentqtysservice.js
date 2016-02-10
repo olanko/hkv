@@ -7,19 +7,23 @@ angular.module('hkApp.controllers')
 
             for (var i = 0; i < transfers.length; i++) {
                 /* Delivery */
+                if (!runningvalues[transfers[i].productid]) {
+                    runningvalues[transfers[i].productid] = {};
+                }
                 if (transfers[i].type == 3) {
                     transfers[i].runningvalue = transfers[i].absolute;
 
                     /* If first absolute value or value matches running value, then fine. */
-                    if (!runningvalues[transfers[i].productid] || runningvalues[transfers[i].productid] == transfers[i].absolute) {
+                    if (!runningvalues[transfers[i].productid].value
+                        || runningvalues[transfers[i].productid].value == transfers[i].absolute) {
                         transfers[i].class = 'bg-success';
                     } else {
                         transfers[i].class = 'bg-danger';
                     }
-                    runningvalues[transfers[i].productid] = 1.0 * transfers[i].absolute;
+                    runningvalues[transfers[i].productid].value = 1.0 * transfers[i].absolute;
                 } else {
-                    if (!runningvalues[transfers[i].productid]) {
-                        runningvalues[transfers[i].productid] = 0;
+                    if (!runningvalues[transfers[i].productid].value) {
+                        runningvalues[transfers[i].productid].value = 0;
                         transfers[i].runningvalue = 0;
                     }
 
@@ -41,14 +45,16 @@ angular.module('hkApp.controllers')
                         transfers[i].change += 1.0 * transfers[i].relative;
                     }
 
-                    runningvalues[transfers[i].productid] += transfers[i].change;
-                    transfers[i].runningvalue = runningvalues[transfers[i].productid];
+                    runningvalues[transfers[i].productid].value += transfers[i].change;
+                    transfers[i].runningvalue = runningvalues[transfers[i].productid].value;
                 }
             }
 
             /* Populate products current values ater products loaded. */
             angular.forEach(products, function (value, key) {
-                products[key].currentqty = runningvalues[value['id']];
+                if (runningvalues[value['id']]) {
+                    products[key].currentqty = runningvalues[value['id']].value;
+                }
             });
         }
     };
