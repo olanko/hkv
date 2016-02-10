@@ -38,8 +38,15 @@
                 <td>{{ (products | filter: {id: t.productid})[0].name }}</td>
                 <td>{{ (storages | filter: {id: t.fromstorageid})[0].name }}</td>
                 <td>{{ (storages | filter: {id: t.tostorageid})[0].name }}</td>
-                <td>{{ t.relative | number: 0 }}</td>
-                <td>{{ t.absolute | number: 0 }}</td>
+
+                <td>
+                    <span ng-if="filters.storage">{{ t.change | number: 0 }}</span>
+                    <span ng-if="!filters.storage">{{ t.relative | number: 0 }}</span>
+                </td>
+                <td ng-class="t.class">
+                    <span ng-if="filters.storage">{{ t.runningvalue | number: 0 }}</span>
+                    <span ng-if="!filters.storage">{{ t.absolute | number: 0 }}</span>
+                </td>
                 <td>{{ t.comment }}</td>
             </tr>
         </tbody>

@@ -1,7 +1,7 @@
 angular.module('hkApp.controllers')
 .controller('TransfersCtrl',
-    ['$scope', '$http', '$routeParams', 'Storage', 'Product', 'Transfer',
-    function  ($scope, $http, $routeParams, Storage, Product, Transfer) {
+    ['$scope', '$http', '$routeParams', '$q', 'Storage', 'Product', 'Transfer', 'CurrentQtysService',
+    function  ($scope, $http, $routeParams, $q, Storage, Product, Transfer, CurrentQtysService) {
         $scope.storageid = $routeParams.storageid;
         $scope.productid = $routeParams.productid;
 
@@ -30,12 +30,17 @@ angular.module('hkApp.controllers')
             if (where) {
                 filter = {'filter': {'where': where}};
             }
-            Transfer.find(filter)
-                .$promise
-                .then(function (data) {
-                    $scope.transfers = data;
+            $scope.transfers = Transfer.find(filter);
+
+            if ($scope.filters.storage) {
+                $q.all([
+                    $scope.products.$promise,
+                    $scope.transfers.$promise
+                ]).then(function () {
+                    CurrentQtysService.setCurrentQtys($scope.transfers, $scope.products, $scope.filters.storage);
                 });
-            };
+            }
+        };
         $scope.findTransfers();
 
         $scope.storages = Storage.find();
