@@ -1,4 +1,4 @@
-<div class="container" ng.model="filters.storage">
+<div class="container">
     <span class="btn-group" data-toggle="buttons">
         <label class="btn btn-primary" ng-class="{active: storageid == s.id}" ng-repeat="s in storages | orderBy: 'id' | filter: { type: 0 } ">
             <input type="radio" name="filters.storage" ng-model="filters.storage" uncheckable uib-btn-radio="s" ng-click="findTransfers()" ng-checked="s.id == storage.id"/> {{ s.name }}
@@ -15,11 +15,20 @@
         </label>
     </span>
 </div>
+<div ng-if="productid" class="container">
+    <span class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active" >
+            {{ (products | filter: {id: productid})[0].name }} &nbsp; <button type="button" class="close" ng-click="setProductFilter(undefined)"> &times; </button>
+        </label>
+    </span>
+
+</div>
 
 <div class="container">
     <table class="table table-striped" ng-model="transfers">
+        <caption>Tapahtumat {{ filters.storage.name }}</span>  <span ng-if="productid">{{ (products | filter: {id: productid})[0].name }}</span><button type="button" class="close" ng-click="setProductFilter(undefined)"><span aria-hidden="true">&times;</span></button></caption>
         <thead>
-            <th></th>
+            <th>Aika</th>
             <th>Tapahtuma</th>
             <th>Tuote</th>
             <th>Mistä</th>
@@ -35,9 +44,9 @@
          -->
                 <td>{{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}</td>
                 <td>{{ types[t.type] }}</td>
-                <td>{{ (products | filter: {id: t.productid})[0].name }}</td>
-                <td>{{ (storages | filter: {id: t.fromstorageid})[0].name }}</td>
-                <td>{{ (storages | filter: {id: t.tostorageid})[0].name }}</td>
+                <td><a ng-click="setProductFilter(t.productid)">{{ (products | filter: {id: t.productid})[0].name }}</td>
+                <td><a ng-href="/storage/{{t.fromstorageid}}">{{ (storages | filter: {id: t.fromstorageid})[0].name }}</a></td>
+                <td><a ng-href="/storage/{{t.tostorageid}}">{{ (storages | filter: {id: t.tostorageid})[0].name }}</a></td>
 
                 <td>
                     <span ng-if="filters.storage">{{ t.change | number: 0 }}</span>

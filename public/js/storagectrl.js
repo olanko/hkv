@@ -6,33 +6,52 @@ angular.module('hkApp.controllers')
 
         $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario'];
 
-        $scope.storage = {};
+        $scope.filters = {};
+        $scope.filters.storage = {};
         $scope.storages = [];
-        $scope.product = {};
+        $scope.filters.product = {};
         $scope.products = [];
         $scope.transfers = [];
 
-        var where = { 'or': [ {'fromstorageid': storageid}, {'tostorageid': storageid} ]};
-        var filter = {'filter': {'where': where, 'order': 'transfertime'}};
-
-        $scope.storage = Storage.findById({'id': storageid});
-        $scope.storages = Storage.find();
-
-        $scope.products = Product.find();
-        $scope.products
+        Storage.findById({'id': storageid})
             .$promise
             .then(function (data) {
-                $scope.product = data[0];
+                $scope.filters.storage = data;
+                $scope.findProducts();
             });
 
-        $scope.transfers = Transfer.find(filter);
 
-        var runningvalues = {};
+        $scope.storages = Storage.find();
 
-        $q.all([
-            $scope.products.$promise,
-            $scope.transfers.$promise
-        ]).then(function () {
-            CurrentQtysService.setCurrentQtys($scope.transfers, $scope.products, $scope.storage);
-        });
+        $scope.changeStorage = function (storageid) {
+            $scope.filters.storage = _.find($scope.storages, {'id' : storageid});
+            $scope.findProducts();
+        };
+
+        $scope.findProducts = function () {
+            $scope.transfers = [];
+
+            var sid = $scope.filters.storage.id;
+
+            var productsPromise = Product.find();
+            productsPromise
+                .$promise
+                .then(function (data) {
+                    $scope.products = data;
+                });
+
+            var where = { 'or': [ {'fromstorageid': sid}, {'tostorageid': sid} ]};
+            var filter = {'filter': {'where': where, 'order': 'transfertime'}};
+
+            $scope.transfers = Transfer.find(filter);
+
+            var runningvalues = {};
+
+            $q.all([
+                $scope.products.$promise,
+                $scope.transfers.$promise
+            ]).then(function () {
+                CurrentQtysService.setCurrentQtys($scope.transfers, $scope.products, $scope.filters.storage);
+            });
+        };
 }]);

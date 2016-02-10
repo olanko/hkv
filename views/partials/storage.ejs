@@ -1,33 +1,26 @@
-<div>
-    <label for="product">Tuote</label>
-
-    <select class="form-control" name="product" ng-model="product" ng-change="changeProduct()" ng-options="product.name for product in products | orderBy: 'pid' | filter: { active: true }"
-    ng.>
-    </select>
-</div>
+<div class="container">
+    <span class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary" ng-class="{active: filters.storage.id == s.id}" ng-repeat="s in storages | orderBy: 'id' | filter: { type: 0 } ">
+            <input type="radio" name="filters.storage" ng-model="filters.storage" uib-btn-radio="s" ng-click="changeStorage(s.id)" ng-checked="s.id == filters.storage.id"/> {{ s.name }}
+        </label>
+    </span>
 
 <div class="container">
-    <table class="table table-striped" ng-model="transfers">
+    <table class="table table-striped" ng-model="products">
         <thead>
-            <th></th>
-            <th>Tapahtuma</th>
-            <th>Tuote</th>
-            <th>Mistä</th>
-            <th>Minne</th>
-            <th>Muutos</th>
+            <caption>{{ filters.product.name }} {{ filters.storage.name }}</caption>
+            <th>Nimi</th>
             <th>Määrä</th>
-            <th>Kommentti</th>
+            <th>Tapahtumat</th>
         </thead>
         <tbody>
-            <tr ng-repeat="t in transfers | orderBy: 'transfertime' | filter: {productid: product.id}" ng-model="transfers">
-                <td>{{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}</td>
-                <td>{{ types[t.type] }}</td>
-                <td>{{ (products | filter: {id: t.productid})[0].name }}</td>
-                <td>{{ (storages | filter: {id: t.fromstorageid})[0].name }}</td>
-                <td>{{ (storages | filter: {id: t.tostorageid})[0].name }}</td>
-                <td><span ng-show="t.type !== 3">{{ t.change | number: 0 }}</span></td>
-                <td ng-class="t.class">{{ t.runningvalue | number: 0 }}</td>
-                <td>{{ t.comment }}</td>
+            <tr ng-repeat="p in products | orderBy: 'name'" ng-model="products">
+
+
+                <td>{{ p.name }}</td>
+                <td>{{ p.currentqty }}</td>
+                <td><a ng-href="/transfers?storageid={{filters.storage.id}}&productid={{p.id}}">Tapahtumat</th>
+
             </tr>
         </tbody>
     </table>

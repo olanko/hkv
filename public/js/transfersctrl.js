@@ -14,12 +14,51 @@ angular.module('hkApp.controllers')
 
         $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario'];
 
-        // if ($scope.productid > 0) {
-        //     where.productid = $scope.productid;
-        // }
-
         $scope.storages = Storage.find();
         $scope.products = Product.find();
+
+        $scope.findTransfers = function () {
+            var where = '';
+            var productwhere = '';
+            var filter = {};
+
+            if ($scope.filters.storage) {
+                var s = $scope.filters.storage;
+                $scope.storageid = s.id;
+
+                where = { 'or': [ {'fromstorageid': s.id}, {'tostorageid': s.id} ]};
+            } else {
+                $scope.storageid = undefined;
+            }
+
+            if ($scope.productid) {
+                productwhere = {'productid': $scope.productid};
+                if (where) {
+                    where = {'and': [where, productwhere]};
+                } else {
+                    where = productwhere;
+                }
+            }
+
+            if (where) {
+                filter = {'filter': {'where': where}};
+            }
+
+            Transfer.find(filter)
+            .$promise
+            .then(function (data) {
+                $scope.transfers = data;
+
+                if ($scope.filters.storage) {
+                    $q.all([
+                        $scope.products.$promise
+                    ]).then(function () {
+                        CurrentQtysService.setCurrentQtys($scope.transfers, $scope.products, $scope.filters.storage);
+                    });
+                }
+            });
+        };
+
 
         if ($scope.storageid) {
             Storage.findById({'id': $scope.storageid})
@@ -28,33 +67,13 @@ angular.module('hkApp.controllers')
                 $scope.filters.storage = data;
                 $scope.findTransfers();
             });
+        } else {
+            $scope.findTransfers();
         }
 
-        $scope.findTransfers = function () {
-            var where = '';
-            var filter = {};
-
-            if ($scope.filters.storage) {
-                var s = $scope.filters.storage;
-                $scope.storageid = s.id;
-
-                where = { 'or': [ {'fromstorageid': s.id}, {'tostorageid': s.id} ]};
-            }
-
-            if (where) {
-                filter = {'filter': {'where': where}};
-            }
-            $scope.transfers = Transfer.find(filter);
-
-            if ($scope.filters.storage) {
-                $q.all([
-                    $scope.products.$promise,
-                    $scope.transfers.$promise
-                ]).then(function () {
-                    CurrentQtysService.setCurrentQtys($scope.transfers, $scope.products, $scope.filters.storage);
-                });
-            }
+        $scope.setProductFilter = function (productid) {
+            $scope.productid = productid;
+            $scope.findTransfers();
         };
-        $scope.findTransfers();
     }
 ]);
