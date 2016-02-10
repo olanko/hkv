@@ -52,7 +52,24 @@
         "nullable": "NO"
       },
       "_selectable": true
+    },
+    "type": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "type",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "YES"
+      },
+      "_selectable": true
     }
+
   },
   "validations": [],
   "relations": {},
