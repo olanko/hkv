@@ -11,11 +11,10 @@ angular.module('hkApp.controllers')
                     runningvalues[transfers[i].productid] = {};
                 }
                 if (transfers[i].type == 3) {
-                    transfers[i].runningvalue = transfers[i].absolute;
+                    transfers[i].runningvalue = 1.0 * transfers[i].absolute;
 
                     /* If first absolute value or value matches running value, then fine. */
-                    if (!runningvalues[transfers[i].productid].value
-                        || runningvalues[transfers[i].productid].value == transfers[i].absolute) {
+                    if (!runningvalues[transfers[i].productid].value || runningvalues[transfers[i].productid].value == transfers[i].absolute) {
                         transfers[i].class = 'bg-success';
                     } else {
                         transfers[i].class = 'bg-danger';
@@ -31,7 +30,7 @@ angular.module('hkApp.controllers')
 
                     /* Transfer and delivery */
                     if (transfers[i].type === 0 || transfers[i].type === 1) {
-                        if (transfers[i].fromstorageid == storage.id) {
+                        if ((transfers[i].fromstorageid | 0) == storage.id) {
                             transfers[i].change += -1.0 * transfers[i].relative;
 
                         }
@@ -45,11 +44,12 @@ angular.module('hkApp.controllers')
                         transfers[i].change += 1.0 * transfers[i].relative;
                     }
 
-                    runningvalues[transfers[i].productid].value += transfers[i].change;
-                    transfers[i].runningvalue = runningvalues[transfers[i].productid].value;
+                    runningvalues[transfers[i].productid].value += 1.0 * transfers[i].change;
+                    transfers[i].runningvalue = 1.0 * runningvalues[transfers[i].productid].value;
+
+
                 }
             }
-
             /* Populate products current values ater products loaded. */
             angular.forEach(products, function (value, key) {
                 if (runningvalues[value['id']]) {
