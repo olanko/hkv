@@ -18,11 +18,25 @@ angular.module('hkApp.controllers')
         //     where.productid = $scope.productid;
         // }
 
+        $scope.storages = Storage.find();
+        $scope.products = Product.find();
+
+        if ($scope.storageid) {
+            Storage.findById({'id': $scope.storageid})
+            .$promise
+            .then(function (data) {
+                $scope.filters.storage = data;
+                $scope.findTransfers();
+            });
+        }
+
         $scope.findTransfers = function () {
             var where = '';
             var filter = {};
+
             if ($scope.filters.storage) {
                 var s = $scope.filters.storage;
+                $scope.storageid = s.id;
 
                 where = { 'or': [ {'fromstorageid': s.id}, {'tostorageid': s.id} ]};
             }
@@ -42,8 +56,5 @@ angular.module('hkApp.controllers')
             }
         };
         $scope.findTransfers();
-
-        $scope.storages = Storage.find();
-        $scope.products = Product.find();
     }
 ]);

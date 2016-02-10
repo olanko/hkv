@@ -1,7 +1,8 @@
 <div>
     <label for="product">Tuote</label>
 
-    <select class="form-control" name="product" ng-model="product" ng-change="changeProduct()" ng-options="product.name for product in products | orderBy: 'pid' | filter: { active: true }" >
+    <select class="form-control" name="product" ng-model="product" ng-change="changeProduct()" ng-options="product.name for product in products | orderBy: 'pid' | filter: { active: true }"
+    ng.>
     </select>
 </div>
 

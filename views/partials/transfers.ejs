@@ -1,16 +1,16 @@
-<div class="container">
+<div class="container" ng.model="filters.storage">
     <span class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary" ng-class="{active: filters.storage == s}" ng-repeat="s in storages | orderBy: 'id' | filter: { type: 0 } ">
-            <input type="radio" name="filters.storage" ng-model="filters.storage" uncheckable uib-btn-radio="s" ng-click="findTransfers()" /> {{ s.name }}
+        <label class="btn btn-primary" ng-class="{active: storageid == s.id}" ng-repeat="s in storages | orderBy: 'id' | filter: { type: 0 } ">
+            <input type="radio" name="filters.storage" ng-model="filters.storage" uncheckable uib-btn-radio="s" ng-click="findTransfers()" ng-checked="s.id == storage.id"/> {{ s.name }}
         </label>
     </span>
-    <span class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary" ng-class="{active: filters.storage == s}" ng-repeat="s in storages | orderBy: 'id' | filter: { type: 1 } ">
+<!--     <span class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary" ng-class="{active: storageid == s.id}" ng-repeat="s in storages | orderBy: 'id' | filter: { type: 1 } ">
             <input type="radio" name="filters.storage" ng-model="filters.storage" uncheckable uib-btn-radio="s" ng-click="findTransfers()" /> {{ s.name }}
         </label>
-    </span>
+    </span> -->
     <span class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary" ng-class="{active: filters.storage == s}" ng-repeat="s in storages | orderBy: 'id' | filter: { type: 2 } ">
+        <label class="btn btn-primary" ng-class="{active: storageid == s.id}" ng-repeat="s in storages | orderBy: 'id' | filter: { type: 2 } ">
             <input type="radio" name="filters.storage" ng-model="filters.storage" uncheckable uib-btn-radio="s" ng-click="findTransfers()" /> {{ s.name }}
         </label>
     </span>
