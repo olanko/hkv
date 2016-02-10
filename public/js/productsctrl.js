@@ -36,7 +36,7 @@ angular.module('hkApp.controllers')
             var t = 'Lisätty: ' + p.name;
 
             var q = [];
-            var n = p.unitQty;
+            var n = p.unitqty;
 
             q.push({'n': '' + n, 'q': n});
             for (var i = 2; i <= 4; i++) {
