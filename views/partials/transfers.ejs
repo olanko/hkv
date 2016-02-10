@@ -24,10 +24,10 @@
          -->
                 <td>{{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}</td>
                 <td>{{ types[t.type] }}</td>
-                <td>{{ t.relative | number: 0 }} {{ t.absolute | number: 0 }}</td>
                 <td>{{ products[t.productid].name }}</td>
                 <td>{{ storages[t.fromstorageid].name }}</td>
                 <td>{{ storages[t.tostorageid].name }}</td>
+                <td>{{ t.relative | number: 0 }} {{ t.absolute | number: 0 }}</td>
                 <td>{{ t.comment }}</td>
             </tr>
         </tbody>
