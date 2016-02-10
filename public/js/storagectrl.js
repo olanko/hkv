@@ -34,6 +34,7 @@ angular.module('hkApp.controllers')
             .$promise
             .then(function (data) {
                 for (var i = 0; i < data.length; i++) {
+                    /* Delivery */
                     if (data[i].type == 3) {
                         data[i].runningvalue = data[i].absolute;
 
@@ -45,28 +46,31 @@ angular.module('hkApp.controllers')
                         }
                         runningvalues[data[i].productid] = 1.0 * data[i].absolute;
                     } else {
-                        if (runningvalues[data[i].productid]) {
-                            /* previous value found */
-
-                            /* Transfer and delivery */
-                            if (data[i].type === 0 || data[i].type === 1) {
-                                data[i].change = 0;
-                                if (data[i].fromstorageid == $scope.storage.id) {
-                                    data[i].change += -1.0 * data[i].relative;
-
-                                }
-                                if (data[i].tostorageid == $scope.storage.id) {
-                                    data[i].change += 1.0 * data[i].relative;
-                                }
-                                runningvalues[data[i].productid] += data[i].change;
-                            }
-
-                            if (data[i].type == 2) {
-                                runningvalues[data[i].productid] = runningvalues[data[i].productid] + 1.0 * data[i].relative;
-                            }
-
-                            data[i].runningvalue = runningvalues[data[i].productid];
+                        if (!runningvalues[data[i].productid]) {
+                            runningvalues[data[i].productid] = 0;
+                            data[i].runningvalue = 0;
                         }
+
+                        data[i].change = 0;
+
+                        /* Transfer and delivery */
+                        if (data[i].type === 0 || data[i].type === 1) {
+                            if (data[i].fromstorageid == $scope.storage.id) {
+                                data[i].change += -1.0 * data[i].relative;
+
+                            }
+                            if (data[i].tostorageid == $scope.storage.id) {
+                                data[i].change += 1.0 * data[i].relative;
+                            }
+                        }
+
+                        /* Sales */
+                        if (data[i].type === 2) {
+                            data[i].change += 1.0 * data[i].relative;
+                        }
+
+                        runningvalues[data[i].productid] += data[i].change;
+                        data[i].runningvalue = runningvalues[data[i].productid];
                     }
                 }
                 $scope.transfers = data;
