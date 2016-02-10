@@ -1,0 +1,42 @@
+<div>
+    <label for="product">Tuote</label>
+
+    <select class="form-control" name="product" ng-model="product" ng-change="changeProduct()" ng-options="product.name for product in products | orderBy: 'pid' | filter: { active: true }" >
+    </select>
+</div>
+
+<style type="text/css">
+    .absoluteOK: {
+        font-weight: bold;
+    }
+    .absoluteWrong: {
+        font-weight: bold;
+    }
+
+</style>
+<div class="container">
+    <table class="table table-striped" ng-model="transfers">
+        <thead>
+            <th></th>
+            <th>Tapahtuma</th>
+            <th>Tuote</th>
+            <th>Mistä</th>
+            <th>Minne</th>
+            <th>Muutos</th>
+            <th>Määrä</th>
+            <th>Kommentti</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="t in transfers | orderBy: 'transfertime' | filter: {productid: product.id}" ng-model="transfers">
+                <td>{{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}</td>
+                <td>{{ types[t.type] }}</td>
+                <td>{{ products[t.productid].name }}</td>
+                <td>{{ storages[t.fromstorageid].name }}</td>
+                <td>{{ storages[t.tostorageid].name }}</td>
+                <td><span ng-show="t.type !== 3">{{ t.change | number: 0 }}</span></td>
+                <td ng-class="t.class">{{ t.runningvalue }}</td>
+                <td>{{ t.comment }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
