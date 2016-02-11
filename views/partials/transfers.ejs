@@ -56,6 +56,9 @@
                     <a ng-click="setProductFilter(t.productid)">
                         <span ng-if="filters.storage">{{ t.runningvalue | number: 0 }}</span>
                         <span ng-if="!filters.storage">{{ t.absolute | number: 0 }}</span>
+                        <span ng-if="t.type == 3 && t.runningvalue - t.absolute !== 0">
+                            ({{ (t.runningvalue - t.absolute) | number: 0 }})
+                        </span>
                     </a>
                 </td>
                 <td>{{ t.comment }}</td>
