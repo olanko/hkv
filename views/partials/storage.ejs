@@ -11,14 +11,19 @@
             <caption>{{ filters.product.name }} {{ filters.storage.name }}</caption>
             <th>Nimi</th>
             <th>Määrä</th>
+            <th></th>
             <th>Tapahtumat</th>
         </thead>
         <tbody>
             <tr ng-repeat="p in products | orderBy: 'name'" ng-model="products">
-
-
                 <td>{{ p.name }}</td>
-                <td>{{ p.currentqty }}</td>
+                <td>{{ p.currentqty | number: 0 }} <span ng-show="p.currentqty > 0">({{ (p.currentqty / p.unitqty) | number: 0 }}x{{p.unitqty}}<span ng-show="(p.currentqty) % (p.unitqty ) !== 0"> + {{ (p.currentqty) % (p.unitqty )}}</span>)
+                </span></td>
+                <td>
+                     <span ng-show="p.isOK" class="text-success glyphicon glyphicon-ok"></span>
+                    <span ng-show="!p.isOK && p.currentqty">
+                    <button class="btn btn-primary" ng-click="addInventoryOK(filters.storage, p)">OK</button>
+                </span></td>
                 <td><a ng-href="/transfers?storageid={{filters.storage.id}}&productid={{p.id}}">Tapahtumat</th>
 
             </tr>

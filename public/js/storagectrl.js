@@ -54,4 +54,25 @@ angular.module('hkApp.controllers')
                 CurrentQtysService.setCurrentQtys($scope.transfers, $scope.products, $scope.filters.storage);
             });
         };
+
+        $scope.addInventoryOK = function (storage, product) {
+            if (!storage || !product) {
+                return;
+            }
+
+            Transfer.create({
+                "fromstorageid": storage.id,
+                "tostorageid": storage.id,
+                "productid": product.id,
+                "user": 0,
+                "absolute": product.currentqty,
+                "relative": 0,
+                "comment": '',
+                "type": 3 // Inventory
+            })
+            .$promise
+            .then(function (transfer, err) {
+                product.isOK = true;
+            });
+        };
 }]);
