@@ -20,7 +20,7 @@ angular.module('hkApp.controllers')
                         transfers[i].class = 'bg-danger';
                     }
                     runningvalues[transfers[i].productid].value = 1.0 * transfers[i].absolute;
-                    console.log(runningvalues);
+                    console.log(runningvalues[transfers[i].productid].value);
                 } else {
                     if (!runningvalues[transfers[i].productid].value) {
                         runningvalues[transfers[i].productid].value = 0;
