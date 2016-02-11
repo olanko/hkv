@@ -41,7 +41,7 @@ angular.module('hkApp.controllers')
             }
 
             if (where) {
-                filter = {'filter': {'where': where}, 'order': 'transfertime'};
+                filter = {'filter': {'where': where, 'order': 'transfertime'};
             }
 
             Transfer.find(filter)
