@@ -7,20 +7,28 @@
     <div ng-show="options.showFromStorage">
     <label ng-show="options.showStorageLabels" for="stofrom">Mistä</label>
     <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary" ng-class="{active: s.id == newtransfer.stofrom.id}" ng-repeat="s in storages | orderBy: 'id'">
+        <label class="btn btn-primary" ng-class="{active: s.id == newtransfer.stofrom.id}" ng-repeat="s in storages | orderBy: 'id' | filter: {type: options.fromStorageType}">
             <input type="radio" id="stofrom" name="stofrom" ng-model="newtransfer.stofrom" ng-value="s"
                 ng-checked="s.id == newtransfer.stofrom.id" /> {{ s.name }}
         </label>
-    </div><br /></div>
+    </div>
+    <br /></div>
 
     <div ng-show="options.showToStorage">
     <label ng-show="options.showStorageLabels" for="stodest">Minne</label>
     <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary" ng-class="{active: s.id == newtransfer.stodest.id}" ng-repeat="s in storages | orderBy: 'id'">
+        <label class="btn btn-primary" ng-class="{active: s.id == newtransfer.stodest.id}" ng-repeat="s in storages | orderBy: 'id'| filter: {type: options.fromStorageType}">
             <input type="radio" id="stodest" ng-model="newtransfer.stodest" ng-value="s"
                 ng-checked="s.id == newtransfer.stodest.id" /> {{ s.name }}
         </label>
-    </div><br /></div>
+    </div>
+    <div ng-if="options.showWaste" class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary" ng-class="{active: s.id == newtransfer.stodest.id}" ng-repeat="s in storages | orderBy: 'id' | filter: {type: 2}">
+            <input type="radio" id="stodest" name="stodest" ng-model="newtransfer.stodest" ng-value="s"
+                ng-checked="s.id == newtransfer.stodest.id" /> {{ s.name }}
+        </label>
+    </div>
+    <br /></div>
 
     <label for="product">Mitä</label>
 

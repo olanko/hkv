@@ -11,7 +11,8 @@ angular.module('hkApp.controllers')
         fromStorageType: 0,
         showFromStorage: true,
         showToStorage: true,
-        showStorageLabels: true
+        showStorageLabels: true,
+        showWaste: false
     };
 
     $scope.actions = {
@@ -19,7 +20,9 @@ angular.module('hkApp.controllers')
             caption: '',
             submitCaption: 'Siirrä',
             type: 0,
-            initOptions: function () {},
+            initOptions: function () {
+                options.showWaste = true;
+            },
             initData: function () {
                 $scope.newtransfer.stofrom = $scope.newtransfer.stofrom || $scope.storages[0];
                 $scope.newtransfer.stodest = $scope.newtransfer.stodest || $scope.storages[1];
@@ -107,8 +110,9 @@ angular.module('hkApp.controllers')
 
     $q.all([
         Product.find().$promise,
-        Storage.find({filter: {where: { 'type': options.fromStorageType }}}).$promise
+        Storage.find({filter: {where: {'or': [{'type': options.fromStorageType}, {'type': 2} ]}}}).$promise
     ]).then(function (data) {
+        console.log(data);
         $scope.products = data[0];
         _($scope.products).forEach(function (i) {
             i.qs = JSON.parse(i.qtys);
