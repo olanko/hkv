@@ -189,7 +189,23 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "product": {
+      "type": "belongsTo",
+      "model": "Product",
+      "foreignkey": "productid"
+    },
+    "fromstorage": {
+      "type": "belongsTo",
+      "model": "Storage",
+      "foreignkey": "fromstorageid"
+    },
+    "tostorage": {
+      "type": "belongsTo",
+      "model": "Storage",
+      "foreignkey": "tostorageid"
+    }
+  },
   "acls": [],
   "methods": {}
 }

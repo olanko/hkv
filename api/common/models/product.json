@@ -87,7 +87,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "transfers": {
+        "type": "hasMany",
+        "model": "Transfer",
+        "foreignKey": "productid"
+    }
+  },
   "acls": [],
   "methods": {}
 }

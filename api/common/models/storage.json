@@ -72,7 +72,18 @@
 
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "transfersfrom": {
+        "type": "hasMany",
+        "model": "Transfer",
+        "foreignKey": "fromstorageid"
+    },
+    "transfersto": {
+        "type": "hasMany",
+        "model": "Transfer",
+        "foreignKey": "tostorageid"
+    }
+  },
   "acls": [],
   "methods": {}
 }
