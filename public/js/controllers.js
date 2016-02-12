@@ -1,8 +1,9 @@
 angular.module('hkApp.controllers', [])
 
-.controller('MainCtrl', ['$scope', '$http', function  ($scope, $http) {
-    $http.get('/api/storages')
-        .success(function (data) {
+.controller('MainCtrl', ['$scope', '$http', 'Storage', function  ($scope, $http, Storage) {
+    Storage.find()
+    .$promise
+    .then(function (data) {
             $scope.storages = data;
-        });
+    });
 }]);
