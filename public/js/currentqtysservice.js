@@ -20,7 +20,6 @@ angular.module('hkApp.controllers')
                         transfers[i].class = 'bg-danger';
                     }
                     runningvalues[transfers[i].productid].value = 1.0 * transfers[i].absolute;
-                    console.log(runningvalues[transfers[i].productid].value);
                 } else {
                     if (!runningvalues[transfers[i].productid].value) {
                         runningvalues[transfers[i].productid].value = 0;
@@ -47,14 +46,15 @@ angular.module('hkApp.controllers')
 
                     runningvalues[transfers[i].productid].value += 1.0 * transfers[i].change;
                     transfers[i].runningvalue = 1.0 * runningvalues[transfers[i].productid].value;
-
-
+                }
+                if (i > 0) {
+                    transfers[i].diff = transfers[i].runningvalue - transfers[i - 1].runningvalue;
                 }
             }
             /* Populate products current values ater products loaded. */
             angular.forEach(products, function (value, key) {
-                if (runningvalues[value['id']]) {
-                    products[key].currentqty = runningvalues[value['id']].value;
+                if (runningvalues[value.id]) {
+                    products[key].currentqty = runningvalues[value.id].value;
                 }
             });
         }
