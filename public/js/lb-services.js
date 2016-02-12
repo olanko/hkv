@@ -3506,6 +3506,58 @@ module.factory(
       { 'id': '@id' },
       {
 
+        // INTERNAL. Use Product.transfers.findById() instead.
+        "prototype$__findById__transfers": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Products/:id/transfers/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Product.transfers.destroyById() instead.
+        "prototype$__destroyById__transfers": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Products/:id/transfers/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Product.transfers.updateById() instead.
+        "prototype$__updateById__transfers": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Products/:id/transfers/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Product.transfers() instead.
+        "prototype$__get__transfers": {
+          isArray: true,
+          url: urlBase + "/Products/:id/transfers",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Product.transfers.create() instead.
+        "prototype$__create__transfers": {
+          url: urlBase + "/Products/:id/transfers",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Product.transfers.destroyAll() instead.
+        "prototype$__delete__transfers": {
+          url: urlBase + "/Products/:id/transfers",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Product.transfers.count() instead.
+        "prototype$__count__transfers": {
+          url: urlBase + "/Products/:id/transfers/count",
+          method: "GET"
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.Product#create
@@ -3927,6 +3979,12 @@ module.factory(
           url: urlBase + "/Products/change-stream",
           method: "POST"
         },
+
+        // INTERNAL. Use Transfer.product() instead.
+        "::get::Transfer::product": {
+          url: urlBase + "/Transfers/:id/product",
+          method: "GET"
+        },
       }
     );
 
@@ -4069,6 +4127,307 @@ module.factory(
     */
     R.modelName = "Product";
 
+    /**
+     * @ngdoc object
+     * @name lbServices.Product.transfers
+     * @header lbServices.Product.transfers
+     * @object
+     * @description
+     *
+     * The object `Product.transfers` groups methods
+     * manipulating `Transfer` instances related to `Product`.
+     *
+     * Call {@link lbServices.Product#transfers Product.transfers()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Product#transfers
+         * @methodOf lbServices.Product
+         *
+         * @description
+         *
+         * Queries transfers of Product.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfers = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::get::Product::transfers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Product.transfers#count
+         * @methodOf lbServices.Product.transfers
+         *
+         * @description
+         *
+         * Counts transfers of Product.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.transfers.count = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::count::Product::transfers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Product.transfers#create
+         * @methodOf lbServices.Product.transfers
+         *
+         * @description
+         *
+         * Creates a new instance in transfers of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfers.create = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::create::Product::transfers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Product.transfers#createMany
+         * @methodOf lbServices.Product.transfers
+         *
+         * @description
+         *
+         * Creates a new instance in transfers of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfers.createMany = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::createMany::Product::transfers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Product.transfers#destroyAll
+         * @methodOf lbServices.Product.transfers
+         *
+         * @description
+         *
+         * Deletes all transfers of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.transfers.destroyAll = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::delete::Product::transfers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Product.transfers#destroyById
+         * @methodOf lbServices.Product.transfers
+         *
+         * @description
+         *
+         * Delete a related item by id for transfers.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for transfers
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.transfers.destroyById = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::destroyById::Product::transfers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Product.transfers#findById
+         * @methodOf lbServices.Product.transfers
+         *
+         * @description
+         *
+         * Find a related item by id for transfers.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for transfers
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfers.findById = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::findById::Product::transfers"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Product.transfers#updateById
+         * @methodOf lbServices.Product.transfers
+         *
+         * @description
+         *
+         * Update a related item by id for transfers.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for transfers
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfers.updateById = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::updateById::Product::transfers"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);
@@ -4097,6 +4456,110 @@ module.factory(
       urlBase + "/Storages/:id",
       { 'id': '@id' },
       {
+
+        // INTERNAL. Use Storage.transfersfrom.findById() instead.
+        "prototype$__findById__transfersfrom": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Storages/:id/transfersfrom/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom.destroyById() instead.
+        "prototype$__destroyById__transfersfrom": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Storages/:id/transfersfrom/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom.updateById() instead.
+        "prototype$__updateById__transfersfrom": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Storages/:id/transfersfrom/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Storage.transfersto.findById() instead.
+        "prototype$__findById__transfersto": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Storages/:id/transfersto/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Storage.transfersto.destroyById() instead.
+        "prototype$__destroyById__transfersto": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Storages/:id/transfersto/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Storage.transfersto.updateById() instead.
+        "prototype$__updateById__transfersto": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Storages/:id/transfersto/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom() instead.
+        "prototype$__get__transfersfrom": {
+          isArray: true,
+          url: urlBase + "/Storages/:id/transfersfrom",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom.create() instead.
+        "prototype$__create__transfersfrom": {
+          url: urlBase + "/Storages/:id/transfersfrom",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom.destroyAll() instead.
+        "prototype$__delete__transfersfrom": {
+          url: urlBase + "/Storages/:id/transfersfrom",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom.count() instead.
+        "prototype$__count__transfersfrom": {
+          url: urlBase + "/Storages/:id/transfersfrom/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Storage.transfersto() instead.
+        "prototype$__get__transfersto": {
+          isArray: true,
+          url: urlBase + "/Storages/:id/transfersto",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Storage.transfersto.create() instead.
+        "prototype$__create__transfersto": {
+          url: urlBase + "/Storages/:id/transfersto",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Storage.transfersto.destroyAll() instead.
+        "prototype$__delete__transfersto": {
+          url: urlBase + "/Storages/:id/transfersto",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Storage.transfersto.count() instead.
+        "prototype$__count__transfersto": {
+          url: urlBase + "/Storages/:id/transfersto/count",
+          method: "GET"
+        },
 
         /**
          * @ngdoc method
@@ -4519,6 +4982,18 @@ module.factory(
           url: urlBase + "/Storages/change-stream",
           method: "POST"
         },
+
+        // INTERNAL. Use Transfer.fromstorage() instead.
+        "::get::Transfer::fromstorage": {
+          url: urlBase + "/Transfers/:id/fromstorage",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Transfer.tostorage() instead.
+        "::get::Transfer::tostorage": {
+          url: urlBase + "/Transfers/:id/tostorage",
+          method: "GET"
+        },
       }
     );
 
@@ -4661,6 +5136,608 @@ module.factory(
     */
     R.modelName = "Storage";
 
+    /**
+     * @ngdoc object
+     * @name lbServices.Storage.transfersfrom
+     * @header lbServices.Storage.transfersfrom
+     * @object
+     * @description
+     *
+     * The object `Storage.transfersfrom` groups methods
+     * manipulating `Transfer` instances related to `Storage`.
+     *
+     * Call {@link lbServices.Storage#transfersfrom Storage.transfersfrom()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage#transfersfrom
+         * @methodOf lbServices.Storage
+         *
+         * @description
+         *
+         * Queries transfersfrom of Storage.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfersfrom = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::get::Storage::transfersfrom"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersfrom#count
+         * @methodOf lbServices.Storage.transfersfrom
+         *
+         * @description
+         *
+         * Counts transfersfrom of Storage.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.transfersfrom.count = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::count::Storage::transfersfrom"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersfrom#create
+         * @methodOf lbServices.Storage.transfersfrom
+         *
+         * @description
+         *
+         * Creates a new instance in transfersfrom of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfersfrom.create = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::create::Storage::transfersfrom"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersfrom#createMany
+         * @methodOf lbServices.Storage.transfersfrom
+         *
+         * @description
+         *
+         * Creates a new instance in transfersfrom of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfersfrom.createMany = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::createMany::Storage::transfersfrom"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersfrom#destroyAll
+         * @methodOf lbServices.Storage.transfersfrom
+         *
+         * @description
+         *
+         * Deletes all transfersfrom of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.transfersfrom.destroyAll = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::delete::Storage::transfersfrom"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersfrom#destroyById
+         * @methodOf lbServices.Storage.transfersfrom
+         *
+         * @description
+         *
+         * Delete a related item by id for transfersfrom.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for transfersfrom
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.transfersfrom.destroyById = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::destroyById::Storage::transfersfrom"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersfrom#findById
+         * @methodOf lbServices.Storage.transfersfrom
+         *
+         * @description
+         *
+         * Find a related item by id for transfersfrom.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for transfersfrom
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfersfrom.findById = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::findById::Storage::transfersfrom"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersfrom#updateById
+         * @methodOf lbServices.Storage.transfersfrom
+         *
+         * @description
+         *
+         * Update a related item by id for transfersfrom.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for transfersfrom
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfersfrom.updateById = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::updateById::Storage::transfersfrom"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Storage.transfersto
+     * @header lbServices.Storage.transfersto
+     * @object
+     * @description
+     *
+     * The object `Storage.transfersto` groups methods
+     * manipulating `Transfer` instances related to `Storage`.
+     *
+     * Call {@link lbServices.Storage#transfersto Storage.transfersto()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage#transfersto
+         * @methodOf lbServices.Storage
+         *
+         * @description
+         *
+         * Queries transfersto of Storage.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfersto = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::get::Storage::transfersto"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersto#count
+         * @methodOf lbServices.Storage.transfersto
+         *
+         * @description
+         *
+         * Counts transfersto of Storage.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.transfersto.count = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::count::Storage::transfersto"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersto#create
+         * @methodOf lbServices.Storage.transfersto
+         *
+         * @description
+         *
+         * Creates a new instance in transfersto of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfersto.create = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::create::Storage::transfersto"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersto#createMany
+         * @methodOf lbServices.Storage.transfersto
+         *
+         * @description
+         *
+         * Creates a new instance in transfersto of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfersto.createMany = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::createMany::Storage::transfersto"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersto#destroyAll
+         * @methodOf lbServices.Storage.transfersto
+         *
+         * @description
+         *
+         * Deletes all transfersto of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.transfersto.destroyAll = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::delete::Storage::transfersto"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersto#destroyById
+         * @methodOf lbServices.Storage.transfersto
+         *
+         * @description
+         *
+         * Delete a related item by id for transfersto.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for transfersto
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.transfersto.destroyById = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::destroyById::Storage::transfersto"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersto#findById
+         * @methodOf lbServices.Storage.transfersto
+         *
+         * @description
+         *
+         * Find a related item by id for transfersto.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for transfersto
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfersto.findById = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::findById::Storage::transfersto"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Storage.transfersto#updateById
+         * @methodOf lbServices.Storage.transfersto
+         *
+         * @description
+         *
+         * Update a related item by id for transfersto.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for transfersto
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Transfer` object.)
+         * </em>
+         */
+        R.transfersto.updateById = function() {
+          var TargetResource = $injector.get("Transfer");
+          var action = TargetResource["::updateById::Storage::transfersto"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);
@@ -4689,6 +5766,24 @@ module.factory(
       urlBase + "/Transfers/:id",
       { 'id': '@id' },
       {
+
+        // INTERNAL. Use Transfer.product() instead.
+        "prototype$__get__product": {
+          url: urlBase + "/Transfers/:id/product",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Transfer.fromstorage() instead.
+        "prototype$__get__fromstorage": {
+          url: urlBase + "/Transfers/:id/fromstorage",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Transfer.tostorage() instead.
+        "prototype$__get__tostorage": {
+          url: urlBase + "/Transfers/:id/tostorage",
+          method: "GET"
+        },
 
         /**
          * @ngdoc method
@@ -5111,6 +6206,183 @@ module.factory(
           url: urlBase + "/Transfers/change-stream",
           method: "POST"
         },
+
+        // INTERNAL. Use Product.transfers.findById() instead.
+        "::findById::Product::transfers": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Products/:id/transfers/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Product.transfers.destroyById() instead.
+        "::destroyById::Product::transfers": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Products/:id/transfers/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Product.transfers.updateById() instead.
+        "::updateById::Product::transfers": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Products/:id/transfers/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Product.transfers() instead.
+        "::get::Product::transfers": {
+          isArray: true,
+          url: urlBase + "/Products/:id/transfers",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Product.transfers.create() instead.
+        "::create::Product::transfers": {
+          url: urlBase + "/Products/:id/transfers",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Product.transfers.createMany() instead.
+        "::createMany::Product::transfers": {
+          isArray: true,
+          url: urlBase + "/Products/:id/transfers",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Product.transfers.destroyAll() instead.
+        "::delete::Product::transfers": {
+          url: urlBase + "/Products/:id/transfers",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Product.transfers.count() instead.
+        "::count::Product::transfers": {
+          url: urlBase + "/Products/:id/transfers/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom.findById() instead.
+        "::findById::Storage::transfersfrom": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Storages/:id/transfersfrom/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom.destroyById() instead.
+        "::destroyById::Storage::transfersfrom": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Storages/:id/transfersfrom/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom.updateById() instead.
+        "::updateById::Storage::transfersfrom": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Storages/:id/transfersfrom/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Storage.transfersto.findById() instead.
+        "::findById::Storage::transfersto": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Storages/:id/transfersto/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Storage.transfersto.destroyById() instead.
+        "::destroyById::Storage::transfersto": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Storages/:id/transfersto/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Storage.transfersto.updateById() instead.
+        "::updateById::Storage::transfersto": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/Storages/:id/transfersto/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom() instead.
+        "::get::Storage::transfersfrom": {
+          isArray: true,
+          url: urlBase + "/Storages/:id/transfersfrom",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom.create() instead.
+        "::create::Storage::transfersfrom": {
+          url: urlBase + "/Storages/:id/transfersfrom",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom.createMany() instead.
+        "::createMany::Storage::transfersfrom": {
+          isArray: true,
+          url: urlBase + "/Storages/:id/transfersfrom",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom.destroyAll() instead.
+        "::delete::Storage::transfersfrom": {
+          url: urlBase + "/Storages/:id/transfersfrom",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Storage.transfersfrom.count() instead.
+        "::count::Storage::transfersfrom": {
+          url: urlBase + "/Storages/:id/transfersfrom/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Storage.transfersto() instead.
+        "::get::Storage::transfersto": {
+          isArray: true,
+          url: urlBase + "/Storages/:id/transfersto",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Storage.transfersto.create() instead.
+        "::create::Storage::transfersto": {
+          url: urlBase + "/Storages/:id/transfersto",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Storage.transfersto.createMany() instead.
+        "::createMany::Storage::transfersto": {
+          isArray: true,
+          url: urlBase + "/Storages/:id/transfersto",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Storage.transfersto.destroyAll() instead.
+        "::delete::Storage::transfersto": {
+          url: urlBase + "/Storages/:id/transfersto",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Storage.transfersto.count() instead.
+        "::count::Storage::transfersto": {
+          url: urlBase + "/Storages/:id/transfersto/count",
+          method: "GET"
+        },
       }
     );
 
@@ -5253,6 +6525,114 @@ module.factory(
     */
     R.modelName = "Transfer";
 
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Transfer#product
+         * @methodOf lbServices.Transfer
+         *
+         * @description
+         *
+         * Fetches belongsTo relation product.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Product` object.)
+         * </em>
+         */
+        R.product = function() {
+          var TargetResource = $injector.get("Product");
+          var action = TargetResource["::get::Transfer::product"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Transfer#fromstorage
+         * @methodOf lbServices.Transfer
+         *
+         * @description
+         *
+         * Fetches belongsTo relation fromstorage.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Storage` object.)
+         * </em>
+         */
+        R.fromstorage = function() {
+          var TargetResource = $injector.get("Storage");
+          var action = TargetResource["::get::Transfer::fromstorage"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Transfer#tostorage
+         * @methodOf lbServices.Transfer
+         *
+         * @description
+         *
+         * Fetches belongsTo relation tostorage.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Storage` object.)
+         * </em>
+         */
+        R.tostorage = function() {
+          var TargetResource = $injector.get("Storage");
+          var action = TargetResource["::get::Transfer::tostorage"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);
