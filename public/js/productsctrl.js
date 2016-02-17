@@ -1,4 +1,4 @@
-/*global angular */
+/*globals angular,moment,_ */
 angular.module('hkApp.controllers')
 .controller('ProductsCtrl',
     ['$scope', 'Product',
