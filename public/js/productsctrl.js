@@ -1,3 +1,4 @@
+/*jslint nomen:true */
 /*globals angular,moment,_ */
 angular.module('hkApp.controllers')
 .controller('ProductsCtrl',
