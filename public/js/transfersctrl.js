@@ -1,8 +1,10 @@
-/*global angular */
+/*jslint nomen:true */
+/*globals angular,moment,_ */
 angular.module('hkApp.controllers')
 .controller('TransfersCtrl',
-    ['$scope', '$http', '$routeParams', '$q', 'Storage', 'Product', 'Transfer', 'CurrentQtysService',
-    function  ($scope, $http, $routeParams, $q, Storage, Product, Transfer, CurrentQtysService) {
+    ['$scope', '$routeParams', '$q', 'Storage', 'Product', 'Transfer', 'CurrentQtysService',
+    function  ($scope, $routeParams, $q, Storage, Product, Transfer, CurrentQtysService) {
+        'use strict';
         $scope.storageid = $routeParams.storageid;
         $scope.productid = $routeParams.productid;
 
@@ -19,12 +21,10 @@ angular.module('hkApp.controllers')
         $scope.products = Product.find();
 
         $scope.findTransfers = function () {
-            var where = '';
-            var productwhere = '';
-            var filter = {};
+            var where = '', productwhere = '', filter = {}, s;
 
             if ($scope.filters.storage) {
-                var s = $scope.filters.storage;
+                s = $scope.filters.storage;
                 $scope.storageid = s.id;
 
                 where = { 'or': [ {'fromstorageid': s.id}, {'tostorageid': s.id} ]};
