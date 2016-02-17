@@ -1,6 +1,8 @@
+/*global angular */
 angular.module('hkApp.controllers', [])
 
-.controller('MainCtrl', ['$scope', '$http', 'Storage', function  ($scope, $http, Storage) {
+.controller('MainCtrl', ['$scope', 'Storage', function  ($scope, Storage) {
+    'use strict';
     Storage.find()
     .$promise
     .then(function (data) {

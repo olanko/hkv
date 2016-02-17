@@ -1,3 +1,4 @@
+/*global angular */
 angular.module('hkApp.controllers')
 .controller('TransferCtrl',
     ['$scope', '$http', '$routeParams', '$location', '$q', 'Product', 'Storage', 'Transfer',

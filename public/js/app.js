@@ -1,4 +1,4 @@
-
+/*global angular */
 angular.module('hkApp', [
     'hkApp.controllers',
     'ngRoute',
@@ -8,7 +8,8 @@ angular.module('hkApp', [
     //'ui.grid'
 ]).
 config(function ($routeProvider, $locationProvider) {
-  $routeProvider.
+    'use strict';
+    $routeProvider.
     when('/transfers', {
       templateUrl: 'partials/transfers',
       controller: 'TransfersCtrl'
@@ -47,5 +48,6 @@ config(function ($routeProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
 }).run(function(amMoment) {
+    'use strict';
     amMoment.changeLocale('fi');
 });

@@ -1,11 +1,13 @@
+/*global angular */
 angular.module('hkApp.controllers')
 /* Find current qtys of all products */
 .factory('CurrentQtysService', function () {
+    'use strict';
     return {
         setCurrentQtys: function (transfers, products, storage) {
-            var runningvalues = {};
+            var i, runningvalues = {};
 
-            for (var i = 0; i < transfers.length; i++) {
+            for (i = 0; i < transfers.length; i += 1) {
                 /* Delivery */
                 if (!runningvalues[transfers[i].productid]) {
                     runningvalues[transfers[i].productid] = {};
