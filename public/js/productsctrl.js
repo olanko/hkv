@@ -1,8 +1,9 @@
 /*global angular */
 angular.module('hkApp.controllers')
 .controller('ProductsCtrl',
-    ['$scope', '$http', '$routeParams', 'Product', 'Transfer',
-    function  ($scope, $http, $routeParams, Product, Transfer) {
+    ['$scope', 'Product',
+    function  ($scope, Product) {
+        'use strict';
         $scope.product = {};
 
         $scope.products = [];
@@ -28,20 +29,20 @@ angular.module('hkApp.controllers')
         $scope.alerts = [];
 
         $scope.addProduct = function () {
-            var p = $scope.product;
+            var p = $scope.product, t, q, n, i;
 
             if (p.name === '') {
                 return;
             }
 
-            var t = 'Lisätty: ' + p.name;
+            t = 'Lisätty: ' + p.name;
 
-            var q = [];
-            var n = p.unitqty;
+            q = [];
+            n = p.unitqty;
 
-            q.push({'n': '' + n, 'q': n});
-            for (var i = 2; i <= 4; i++) {
-                q.push({'n': '' + i + 'x' + n, 'q': i*n});
+            q.push({'n': n, 'q': n});
+            for (i = 2; i <= 4; i += 1) {
+                q.push({'n': i + 'x' + n, 'q': i*n});
             }
 
             p.qtys = JSON.stringify(q);
