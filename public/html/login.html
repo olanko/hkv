@@ -1,0 +1,19 @@
+
+    <div ng-if="alert.msg" class="text-center" role="alert" id="alerttext">
+        <uib-alert type="{{alert.type}}">
+
+            {{alert.msg}}
+
+            </span>
+        </uib-alert>
+    </div>
+    <div class="container">
+        <label for="user.username">Tunnus</label>
+        <input class="form-control" type="text" id="user.username" name="user.username" ng-model="user.username"/>
+
+        <label for="user.password">Salasana</label>
+        <input class="form-control" type="password" id="user.password" name="user.password" ng-model="user.password"/>
+
+        <button type="button" class="btn btn-primary btn-block" ng-click="user.login()">Kirjaudu</button>
+
+    </div>

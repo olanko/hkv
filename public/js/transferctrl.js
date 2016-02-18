@@ -113,7 +113,6 @@ angular.module('hkApp.controllers')
         Product.find().$promise,
         Storage.find({filter: {where: {'or': [{'type': options.fromStorageType}, {'type': 2} ]}}}).$promise
     ]).then(function (data) {
-        console.log(data);
         $scope.products = data[0];
         _($scope.products).forEach(function (i) {
             i.qs = JSON.parse(i.qtys);

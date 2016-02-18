@@ -69,21 +69,45 @@
       },
       "_selectable": true
     }
-
   },
   "validations": [],
   "relations": {
     "transfersfrom": {
-        "type": "hasMany",
-        "model": "Transfer",
-        "foreignKey": "fromstorageid"
+      "type": "hasMany",
+      "model": "Transfer",
+      "foreignKey": "fromstorageid"
     },
     "transfersto": {
-        "type": "hasMany",
-        "model": "Transfer",
-        "foreignKey": "tostorageid"
+      "type": "hasMany",
+      "model": "Transfer",
+      "foreignKey": "tostorageid"
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {}
 }
