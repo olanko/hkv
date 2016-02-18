@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="hkApp">
+<head>
+    <title>Varasto</title>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="/"><span class="glyphicon glyphicon-home"></span> Etusivu</a>
+      </li>
+      <li uib-dropdown>
+        <a href="#" uib-dropdown-toggle role="button"><span class="glyphicon glyphicon-info-sign"></span> Raportteja <span class="caret"></span></a>
+          <ul uib-dropdown-menu class="dropdown-menu" role="menu">
+            <!-- <li><a href="#" disabled>Varaston tilanne</a></li> -->
+            <li><a href="/transfers">Tapahtumat</a></li>
+          </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="navbar-right">
+        <a href="#"><span class="glyphicon glyphicon-off"></span> Ulos</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- /NAV -->
+
+<div ng-view>
+
+</div>
+
+<script type="text/javascript" src="js/lib/angular.js"></script>
+<script type="text/javascript" src="js/lib/angular-route.js"></script>
+<script type="text/javascript" src="js/lib/angular-resource.js"></script>
+<script type="text/javascript" src="js/lib/ui-bootstrap-tpls-1.1.2.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+
+<script type="text/javascript" src="js/controllers.js"></script>
+<script type="text/javascript" src="js/transferctrl.js"></script>
+<script type="text/javascript" src="js/transfersctrl.js"></script>
+<script type="text/javascript" src="js/productsctrl.js"></script>
+<script type="text/javascript" src="js/storagectrl.js"></script>
+<script type="text/javascript" src="js/storagesctrl.js"></script>
+
+<script type="text/javascript" src="js/currentqtysservice.js"></script>
+
+<script type="text/javascript" src="js/lb-services.js"></script>
+
+<script type="text/javascript" src="/js/lib/lodash.min.js"></script>
+<script type="text/javascript" src="/js/lib/moment-with-locales.js"></script>
+<script type="text/javascript" src="/js/lib/angular-moment.min.js"></script>
+
+</body>
+</html>

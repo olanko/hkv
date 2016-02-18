@@ -11,35 +11,35 @@ config(function ($routeProvider, $locationProvider) {
     'use strict';
     $routeProvider.
     when('/transfers', {
-      templateUrl: 'partials/transfers',
+      templateUrl: 'html/transfers.html',
       controller: 'TransfersCtrl'
     }).
     when('/transfer', {
-      templateUrl: 'partials/transfer',
+      templateUrl: 'html/transfer.html',
       controller: 'TransferCtrl'
     }).
     when('/delivery', {
-      templateUrl: 'partials/transfer',
+      templateUrl: 'html/transfer.html',
       controller: 'TransferCtrl'
     }).
     when('/sales', {
-      templateUrl: 'partials/transfer',
+      templateUrl: 'html/transfer.html',
       controller: 'TransferCtrl'
     }).
     when('/inventory', {
-      templateUrl: 'partials/transfer',
+      templateUrl: 'html/transfer.html',
       controller: 'TransferCtrl'
     }).
     when('/products', {
-      templateUrl: 'partials/products',
+      templateUrl: 'html/products.html',
       controller: 'ProductsCtrl'
     }).
     when('/storage/:storageid', {
-      templateUrl: 'partials/storage',
+      templateUrl: 'html/storage.html',
       controller: 'StorageCtrl'
     }).
     when('/', {
-      templateUrl: 'partials/main',
+      templateUrl: 'html/main.html',
       controller: 'MainCtrl'
     }).
     otherwise({

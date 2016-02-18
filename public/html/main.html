@@ -1,0 +1,33 @@
+<div>
+<div class="jumbotron">
+  <div class="container">
+    <a type="button" class="btn btn-lg btn-primary btn-block" href="/transfer"><span class="glyphicon glyphicon-log-out"></span> Hae varastosta</a>
+    <a type="button" class="btn btn-lg btn-primary btn-block" href="/delivery"><span class="glyphicon glyphicon-log-in"></span> Kirjaa toimitus</a>
+    <a type="button" class="btn btn-lg btn-primary btn-block" href="/sales"><span class="glyphicon glyphicon-edit"></span> Kirjaa myynti</a>
+    <a type="button" class="btn btn-lg btn-primary btn-block" href="/inventory"><span class="glyphicon glyphicon-edit"></span> Inventaario</a>
+  </div>
+</div>
+<div class="container">
+  <!--<div class="alert alert-info text-center" role="alert">
+    To deploy your own copy, and learn the fundamentals of the Heroku platform, head over to the <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs" class="alert-link">Getting Started with Node on Heroku</a> tutorial.
+  </div>
+  <hr>-->
+  <div class="row">
+    <div class="col-md-6">
+      <h3><span class="glyphicon glyphicon-info-sign"></span> Varastot</h3>
+      <ul>
+        <li ng-repeat="s in storages | orderBy: 'id' | filter: {type: 0}"><a ng-href="/storage/{{s.id}}">{{s.name}}</a></li>
+
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h3><span class="glyphicon glyphicon-glass"></span> Tuotteet</h3>
+      <ul>
+        <li><a href="/products">Tuotteet</a></li>
+<!--         <li><a href="#">Tuotemäärät</a></li>
+        <li><a href="#">Toimitukset</a></li> -->
+      </ul>
+    </div>
+  </div> <!-- row -->
+</div>
+</div>
