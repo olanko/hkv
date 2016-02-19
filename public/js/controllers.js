@@ -1,17 +1,19 @@
 /*global angular */
 angular.module('hkApp.controllers', [])
 
-.controller('MainCtrl', ['$scope', '$rootScope', 'Storage', 'User', function ($scope, $rootScope, Storage, User) {
+.controller('MainCtrl', ['$scope', 'Storage', function ($scope, Storage) {
     'use strict';
-
-    $scope.user = {};
 
     Storage.find()
     .$promise
     .then(function (data) {
             $scope.storages = data;
     });
+}])
+.controller('NavCtrl', ['$scope', '$rootScope', 'User', function ($scope, $rootScope, User) {
+    'use strict';
 
+    $scope.user = {};
     $scope.User = User;
 
     if (User.isAuthenticated()) {

@@ -6,11 +6,18 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
+    <style type="text/css">
+        @media print {
+          a[href]:after {
+            content: none !important;
+          }
+        }
+    </style>
 </head>
 
 <body>
 <!-- NAV -->
-<nav ng-controller="MainCtrl" class="navbar navbar-default navbar-static-top navbar-inverse">
+<nav ng-controller="NavCtrl" class="navbar navbar-default navbar-static-top navbar-inverse hidden-print">
   <div class="container">
     <ul class="nav navbar-nav">
       <li>
@@ -27,7 +34,7 @@
     <ul class="nav navbar-nav navbar-right">
       <li class="navbar-right" ng-model="user">
         <a ng-if="!User.isAuthenticated()" ng-href="/login"><span class="glyphicon glyphicon-off"></span> Kirjaudu</a>
-        <a ng-if="User.isAuthenticated()" ng-click="logout()">Kirjaantuneena {{user.username}} <span class="glyphicon glyphicon-off"></span> Ulos</a>
+        <a ng-if="User.isAuthenticated()" ng-click="logout()"><span class="text-primary">{{user.username}}</span> <span class="glyphicon glyphicon-off"></span> Ulos</a>
       </li>
     </ul>
   </div>
