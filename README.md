@@ -1,6 +1,6 @@
 # hkv
 
-Storage app for restarant environment.
+Storage app for restaurant environment.
 
 © Olli Korhonen
 olli.korhonen@iki.fi
