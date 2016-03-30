@@ -7,8 +7,8 @@
 
 <div class="container">
     <table class="table table-striped" ng-model="products">
+        <caption>{{ filters.product.name }} {{ filters.storage.name }}</caption>
         <thead>
-            <caption>{{ filters.product.name }} {{ filters.storage.name }}</caption>
             <th>Nimi</th>
             <th>Määrä</th>
             <th></th>
@@ -24,8 +24,7 @@
                     <span ng-show="!p.isOK && p.currentqty">
                     <button class="btn btn-primary" ng-click="addInventoryOK(filters.storage, p)">OK</button>
                 </span></td>
-                <td><a ng-href="/transfers?storageid={{filters.storage.id}}&productid={{p.id}}">Tapahtumat</th>
-
+                <td><a ng-href="/transfers?storageid={{filters.storage.id}}&productid={{p.id}}">Tapahtumat</td>
             </tr>
         </tbody>
     </table>
