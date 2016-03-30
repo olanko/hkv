@@ -38,6 +38,14 @@ config(function ($routeProvider, $locationProvider, $httpProvider) {
       templateUrl: 'html/storage.html',
       controller: 'StorageCtrl'
     }).
+    when('/storagereport/:storageid', {
+      templateUrl: 'html/storagereport.html',
+      controller: 'StorageReportCtrl'
+    }).
+    when('/productreport/:productid', {
+      templateUrl: 'html/productreport.html',
+      controller: 'ProductReportCtrl'
+    }).
     when('/login', {
       templateUrl: 'html/login.html',
       controller: 'LoginCtrl'

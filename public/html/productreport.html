@@ -1,0 +1,25 @@
+
+<div class="container">
+    <table class="table table-striped" ng-model="storages">
+        <caption>{{ filters.product.name }}</caption>
+        <thead>
+            <th></th>
+            <th>alku</th>
+            <th>siirrot</th>
+            <th>myynti</th>
+            <th>hävikki</th>
+            <th>loppu</th>
+            <th>erotus</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="s in storages | orderBy: 'name' | orderBy: 'id' | filter: { type: 0 } " ng-model="storages">
+                <td>{{ s.name }}</td>
+                <td>123<td>
+                <td>234</td>
+                <td>4</td>
+                <td>234234</td>
+                <td>234234</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
