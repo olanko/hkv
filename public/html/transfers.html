@@ -38,7 +38,7 @@
             <th>Kommentti</th>
         </thead>
         <tbody>
-            <tr ng-repeat="t in transfers | orderBy: 'transfertime'">
+            <tr ng-repeat="t in transfers | orderBy: '-transfertime'">
         <!--         <span am-time-ago="t.transfertime"
                 uib-tooltip="{{ t.transfertime |  amDateFormat:'DD.MM.YYYY HH:mm:ss' }}"></span>
          -->
