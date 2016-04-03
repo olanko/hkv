@@ -1,28 +1,31 @@
 <div class="container">
     <span class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary" ng-class="{active: filters.storage.id == s.id}" ng-repeat="s in storages | orderBy: 'id' | filter: { type: 0 } ">
-            <input type="radio" name="filters.storage" ng-model="filters.storage" uib-btn-radio="s" ng-click="changeStorage(s.id)" ng-checked="s.id == filters.storage.id"/> {{ s.name }}
-        </label>
+        <span  ng-repeat="s in storages | orderBy: 'id' | filter: { type: 0 } ">
+            <label class="btn btn-primary" ng-class="{active: filters.storage.id == s.id}" ng-click="setStorage(s)" ng-checked="s.id == filters.storage.id"> {{ s.name }}
+            </label>
+        </span>
     </span>
 </div>
 
 <div class="container">
-    <table class="table table-striped" ng-model="products">
+    <table class="table table-striped">
         <caption>{{ filters.storage.name }}</caption>
         <thead>
             <th>Tuote</th>
             <th>alku</th>
             <th>siirrot</th>
+            <th>tilaukset</th>
             <th>myynti</th>
             <th>hävikki</th>
             <th>loppu</th>
             <th>erotus</th>
         </thead>
         <tbody>
-            <tr ng-repeat="p in products | orderBy: 'name'" ng-model="products">
-                <td>{{ p.name }}</td>
+            <tr ng-repeat="r in reportdata | orderBy: 'id'" ng-model="reportdata">
+                <td>{{ r.transfertime }}</td>
                 <td>123<td>
                 <td>234</td>
+                <td>123</td>
                 <td>4</td>
                 <td>234234</td>
                 <td>234234</td>
