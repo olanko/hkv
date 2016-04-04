@@ -16,6 +16,11 @@ angular.module('hkApp.controllers')
 
         $scope.products = Product.find();
 
+        var queryparams = {
+            begindate: '2016-03-20',
+            enddate: '2016-03-27'
+        };
+
         /* Current storage */
         Storage.findById({'id': $routeParams.storageid})
             .$promise
@@ -27,13 +32,13 @@ angular.module('hkApp.controllers')
         $scope.reportdata = {};
 
         $scope.updateData = function () {
-            Storage.transfersByProduct ({
-                storageid: $scope.filters.storage.id
-            })
-            .$promise
-            .then(function (data) {
-                $scope.reportdata = data;
-                console.log(data);
+            $q.all([
+                QS.transfers(Transfer, queryparams).$promise,
+                QS.deliveries(Transfer, queryparams).$promise,
+                QS.sales(Transfer, queryparams).$promise,
+                QS.inventories(Transfer, queryparams).$promise
+            ]).then(function (results) {
+                console.log(results);
             });
         };
 
