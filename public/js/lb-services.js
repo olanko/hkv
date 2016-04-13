@@ -1,3 +1,14 @@
+// CommonJS package manager support
+if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.exports === exports) {
+  // Export the *name* of this Angular module
+  // Sample usage:
+  //
+  //   import lbServices from './lb-services';
+  //   angular.module('app', [lbServices]);
+  //
+  module.exports = "lbServices";
+}
+
 (function(window, angular, undefined) {'use strict';
 
 var urlBase = "/api";
@@ -6246,6 +6257,45 @@ module.factory(
           method: "POST"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Transfer#allByTime
+         * @methodOf lbServices.Transfer
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         *  - `queryparams` – `{Object=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `data` – `{Array=}` - 
+         */
+        "allByTime": {
+          url: urlBase + "/Transfers/allbytime",
+          method: "POST"
+        },
+
         // INTERNAL. Use Product.transfers.findById() instead.
         "::findById::Product::transfers": {
           params: {
@@ -6722,9 +6772,13 @@ module
     // Note: LocalStorage converts the value to string
     // We are using empty string as a marker for null/undefined values.
     function save(storage, name, value) {
-      var key = propsPrefix + name;
-      if (value == null) value = '';
-      storage[key] = value;
+      try {
+        var key = propsPrefix + name;
+        if (value == null) value = '';
+        storage[key] = value;
+      } catch(err) {
+        console.log('Cannot access local/session storage:', err);
+      }
     }
 
     function load(name) {
