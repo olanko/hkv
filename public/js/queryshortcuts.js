@@ -1,10 +1,11 @@
 var QS = (function () {
-    function transfersByType (Transfer, queryparams, type) {
+    'use strict';
+    function transfersByType(Transfer, queryparams, type) {
         var begindate = '2016-03-20';
         queryparams = queryparams || {};
 
-        if (queryparams['begindate']) {
-            begindate = queryparams['begindate'];
+        if (queryparams.begindate) {
+            begindate = queryparams.begindate;
         }
 
         return Transfer.find({filter: {
