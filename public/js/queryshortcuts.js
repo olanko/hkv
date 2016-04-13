@@ -1,17 +1,25 @@
 var QS = (function () {
     'use strict';
     function transfersByType(Transfer, queryparams, type) {
-        var begindate = '2016-03-20';
+        var begindate = '2016-03-20',
+            enddate = '2016-03-28';
+
         queryparams = queryparams || {};
 
         if (queryparams.begindate) {
             begindate = queryparams.begindate;
         }
+        if (queryparams.enddate) {
+            enddate = queryparams.enddate;
+        }
 
         return Transfer.find({filter: {
             where: {
-                'transfertime': {'gte': begindate},
-                type: type
+                and: [
+                    {'transfertime': {'gte': begindate}},
+                    {'transfertime': {'lte': enddate}},
+                    {'type': type}
+                ]
             },
         }});
     }
