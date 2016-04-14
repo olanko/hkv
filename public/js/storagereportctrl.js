@@ -56,8 +56,6 @@ angular.module('hkApp.controllers')
                 sales = _.filter(transfers, {'type': 2, 'fromstorageid': '' + storageid });
                 inventories = _.filter(transfers, {'type': 3, tostorageid: '' + storageid });
                 waste = _.filter(transfers, {type: 0, tostorageid: '' + WASTESTOID });
-
-                console.log(sales);
             });
         };
 
