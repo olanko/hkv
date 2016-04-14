@@ -86,7 +86,6 @@ angular.module('hkApp.controllers')
                         first = _.find(inventories, {'productid': pid}),
                         last = _.findLast(inventories, {'productid': pid}),
                         r;
-                    console.log(first);
 
                     reportdata[pid] = {
                         name: product.name,
@@ -110,7 +109,6 @@ angular.module('hkApp.controllers')
                 });
 
                 $scope.reportdata = reportdata;
-                console.log(reportdata);
             });
         };
 

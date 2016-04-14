@@ -23,13 +23,13 @@
         <tbody>
             <tr ng-repeat="p in reportdata" ng-model="reportdata">
                 <td>{{ p.name }}</td>
-                <td>123</td>
-                <td>{{ p.transfers }}</td>
-                <td>{{ p.deliveries }}</td>
-                <td>{{ p.sales }}</td>
-                <td>{{ p.waste }}</td>
-                <td>234234</td>
-                <td>234234</td>
+                <td>{{ p.startvalue | number: 0 }}</td>
+                <td>{{ p.transfers | number: 0 }}</td>
+                <td>{{ p.deliveries | number: 0 }}</td>
+                <td>{{ -p.sales | number: 0 }}</td>
+                <td>{{ p.waste | number: 0 }}</td>
+                <td>{{ p.endvalue | number: 0 }}</td>
+                <td ng-class="p.class">{{ p.endvalue - p.expected | number: 0 }}</td>
             </tr>
         </tbody>
     </table>
