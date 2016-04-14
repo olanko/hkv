@@ -6275,7 +6275,7 @@ module.factory(
          *
          * @param {Object} postData Request data.
          *
-         *  - `queryparams` – `{Object=}` - 
+         * This method expects a subset of model properties as request parameters.
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
