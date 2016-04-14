@@ -13,20 +13,21 @@
         <thead>
             <th>Tuote</th>
             <th>alku</th>
-            <th>siirrot</th>
-            <th>tilaukset</th>
-            <th>myynti</th>
-            <th>hävikki</th>
+            <th>Siirrot</th>
+            <th>Toimitukset</th>
+            <th>Myynti</th>
+            <th>Hävikki</th>
             <th>loppu</th>
             <th>erotus</th>
         </thead>
         <tbody>
-            <tr ng-repeat="r in reportdata" ng-model="reportdata">
-                <td>{{ r.transfertime }}</td>
-                <td>123<td>
-                <td>234</td>
+            <tr ng-repeat="p in reportdata" ng-model="reportdata">
+                <td>{{ p.name }}</td>
                 <td>123</td>
-                <td>4</td>
+                <td>{{ p.transfers }}</td>
+                <td>{{ p.deliveries }}</td>
+                <td>{{ p.sales }}</td>
+                <td>{{ p.waste }}</td>
                 <td>234234</td>
                 <td>234234</td>
             </tr>
