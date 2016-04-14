@@ -5,7 +5,8 @@ module.exports = function(Transfer) {
     var begindate = '2016-03-20',
         enddate = '2016-03-28',
         storageid = 1,
-        type = 0;
+        type = undefined,
+        where = {};
 
     queryparams = queryparams || {};
 
@@ -19,18 +20,27 @@ module.exports = function(Transfer) {
     if (queryparams.enddate) {
         enddate = queryparams.enddate;
     }
+    if (queryparams.type) {
+        type = queryparams.type;
+    }
 
-    return Transfer.find({
-        where: {
-            and: [{
-                or: [
-                    {'fromstorageid': storageid},
-                    {'tostorageid': storageid}
-                ]},
-                {'transfertime': {'gte': begindate}},
-                {'transfertime': {'lte': enddate}}
-            ]
-        },
+    where = {
+        and: [{
+            or: [
+                {'fromstorageid': storageid},
+                {'tostorageid': storageid}
+            ]},
+            {'transfertime': {'gte': begindate}},
+            {'transfertime': {'lte': enddate}}
+        ]
+    };
+
+    if (type) {
+        where.and.push({'type': type});
+    }
+
+    Transfer.find({
+        where: where,
         order: 'transfertime'
     }, function (err, result) {
             cb(err, result);
