@@ -96,10 +96,10 @@ angular.module('hkApp.controllers')
                         waste: soz(waste, pid),
                         startvalue: first ? +first.absolute : 0,
                         endvalue: last ? +last.absolute : 0
-                    }
+                    };
                     r = reportdata[pid];
 
-                    r.expected = r.startvalue + r.transfers + r.deliveries + r.sales - r.waste
+                    r.expected = r.startvalue + r.transfers + r.deliveries + r.sales - r.waste;
 
                     if (r.expected !== 0 && r.expected == r.endvalue) {
                         r.class = 'bg-success';
