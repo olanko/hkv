@@ -1,10 +1,10 @@
 module.exports = function(Transfer) {
   'use strict';
   Transfer.allByTime = function (queryparams, cb) {
-    console.log(queryparams);
+    console.dir(queryparams);
     var begindate = '2016-03-20',
         enddate = '2016-03-28',
-        storageid = 1,
+        storageid = 0,
         type = undefined,
         where = {};
 
@@ -39,17 +39,21 @@ module.exports = function(Transfer) {
         where.and.push({'type': type});
     }
 
+    console.log(where);
+
     Transfer.find({
         where: where,
         order: 'transfertime'
-    }, function (err, result) {
-            cb(err, result);
+    }, function (err, results) {
+        console.log('err ' + err);
+        console.log('results ' + results);
+        cb(err, results);
     });
   };
 
   Transfer.remoteMethod(
     'allByTime', {
-      accepts: [{ arg: 'queryparams', type: 'Object' }],
+      accepts: [{ arg: 'queryparams', type: 'Object', http: { source: 'body' } }],
       returns: { arg: 'data', type: 'Array' },
       http: { path: '/allbytime', verb: 'post' }
     }
