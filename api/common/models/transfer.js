@@ -9,7 +9,7 @@ module.exports = function(Transfer) {
 
     queryparams = queryparams || {};
 
-    if (queryparams.storageid) {
+    if (typeof queryparams.storageid !== 'undefined') {
         storageid = queryparams.storageid;
     }
 
@@ -19,7 +19,7 @@ module.exports = function(Transfer) {
     if (queryparams.enddate) {
         enddate = queryparams.enddate;
     }
-    if (queryparams.type) {
+    if (typeof queryparams.type !== 'undefined') {
         type = queryparams.type;
     }
 
