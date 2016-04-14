@@ -4,8 +4,8 @@
 
 angular.module('hkApp.controllers')
 .controller('StorageReportCtrl',
-    ['$scope', '$routeParams', 'Storage', 'Product', 'Transfer',
-    function  ($scope, $routeParams, Storage, Product, Transfer) {
+    ['$scope', '$routeParams', '$q', 'Storage', 'Product', 'Transfer',
+    function  ($scope, $routeParams, $q, Storage, Product, Transfer) {
         'use strict';
         $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario'];
 
@@ -61,17 +61,30 @@ angular.module('hkApp.controllers')
 
             var storageid = $scope.filters.storage.id.toString();
             var queryparams = {
-                begindate: '2016-04-06T11:15:00.000Z',
-                enddate: '2016-04-11T07:10:00.000Z',
+                begindate: new Date('2016-03-15'),
+                enddate: new Date('2016-04-15'),
                 storageid: storageid
             };
+            var salesqueryparams = {
+                begindate: new Date(queryparams.begindate),
+                enddate: new Date(queryparams.enddate),
+                storageid: storageid
+            };
+            salesqueryparams.begindate.setDate(salesqueryparams.begindate.getDate() + 4);
+            salesqueryparams.enddate.setDate(salesqueryparams.enddate.getDate() + 4);
 
-            Transfer.allByTime(queryparams, function (results) {
-                transfers = results.data;
+            $q.all([
+                Transfer.allByTime(queryparams).$promise,
+                Transfer.allByTime(salesqueryparams).$promise
+            ])
+            .then(function (results) {
+                transfers = results[0].data;
+                sales = results[1].data;
+
                 tosto = _.filter(transfers, {'type': 0, tostorageid: storageid });
                 fromsto = _.filter(transfers, {'type': 0, fromstorageid: storageid });
                 deliveries = _.filter(transfers, {'type': 1, tostorageid: storageid });
-                sales = _.filter(transfers, {'type': 2, 'fromstorageid': storageid });
+                sales = _.filter(sales, {'type': 2, 'fromstorageid': storageid });
                 inventories = _.filter(transfers, {'type': 3, tostorageid: storageid });
                 waste = _.filter(transfers, {type: 0, tostorageid: WASTESTOID.toString() });
 
@@ -98,13 +111,22 @@ angular.module('hkApp.controllers')
                     };
                     r = reportdata[pid];
 
+                    var valuesFound = (_.reduce([r.transfers, r.deliveries, -r.sales, r.waste],
+                        function (sum, i) {
+                            return sum + Math.abs(i);
+                        }, 0)
+                    ) > 0;
+
                     r.expected = r.startvalue + r.transfers + r.deliveries + r.sales - r.waste;
 
-                    if (r.expected !== 0 && r.expected == r.endvalue) {
-                        r.class = 'bg-success';
-                    }
-                    if (r.expected !== 0 && r.expected !== r.endvalue) {
-                        r.class = 'bg-danger';
+                    /* Show decorated <td> if some of the values !== 0*/
+                    if (valuesFound) {
+                        if (r.expected === r.endvalue) {
+                            r.class = 'bg-success';
+                        }
+                        if (r.expected !== r.endvalue) {
+                            r.class = 'bg-danger';
+                        }
                     }
                 });
 
