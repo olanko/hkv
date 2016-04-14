@@ -38,7 +38,7 @@ angular.module('hkApp.controllers')
                 result[key] = {
                     productid: current[0].productid,
                     sum: _.reduce(current, function (sum, item) {
-                        return +sum + +item.relative;
+                        return +sum + (+item.relative);
                     }, 0.0)
                 };
             }, [])
