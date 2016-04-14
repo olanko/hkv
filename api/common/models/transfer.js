@@ -4,12 +4,12 @@ module.exports = function(Transfer) {
     var begindate = '2016-03-20',
         enddate = '2016-03-28',
         storageid = 0,
-        type = undefined,
+        type,
         where = {};
 
     queryparams = queryparams || {};
 
-    if (typeof queryparams.storageid !== 'undefined') {
+    if (queryparams.storageid !== undefined) {
         storageid = queryparams.storageid;
     }
 
@@ -19,7 +19,7 @@ module.exports = function(Transfer) {
     if (queryparams.enddate) {
         enddate = queryparams.enddate;
     }
-    if (typeof queryparams.type !== 'undefined') {
+    if (queryparams.type !== undefined) {
         type = queryparams.type;
     }
 
@@ -48,7 +48,9 @@ module.exports = function(Transfer) {
 
   Transfer.remoteMethod(
     'allByTime', {
-      accepts: [{ arg: 'queryparams', type: 'Object', http: { source: 'body' } }],
+      accepts: [
+        { arg: 'queryparams', type: 'Object', http: { source: 'body' } }
+      ],
       returns: { arg: 'data', type: 'Array' },
       http: { path: '/allbytime', verb: 'post' }
     }
