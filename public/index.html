@@ -34,7 +34,7 @@
     <ul class="nav navbar-nav navbar-right">
       <li class="navbar-right" ng-model="user">
         <a ng-if="!User.isAuthenticated()" ng-href="/login"><span class="glyphicon glyphicon-off"></span> Kirjaudu</a>
-        <a ng-if="User.isAuthenticated()" ng-click="logout()"><span class="text-primary">{{user.username}}</span> <span class="glyphicon glyphicon-off"></span> Ulos</a>
+        <a ng-if="User.isAuthenticated()" ng-click="logout()"><span class="text-primary" ng-cloak>{{user.username}}</span> <span class="glyphicon glyphicon-off"></span> Ulos</a>
       </li>
     </ul>
   </div>
@@ -42,7 +42,7 @@
 <!-- /NAV -->
 
 <div ng-view>
-
+asdasd
 </div>
 
 <script type="text/javascript" src="js/lib/angular.js"></script>
