@@ -13,7 +13,8 @@ angular.module('hkApp.controllers')
         showFromStorage: true,
         showToStorage: true,
         showStorageLabels: true,
-        showWaste: false
+        showWaste: false,
+        showDate: false
     };
 
     $scope.actions = {
@@ -64,6 +65,7 @@ angular.module('hkApp.controllers')
             initOptions: function () {
                 options.useNegative = true;
                 options.showToStorage = false;
+                options.showDate = true;
             },
             initData: function () {
                 /* Find pseudo sales storage */
