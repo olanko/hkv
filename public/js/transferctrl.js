@@ -63,6 +63,9 @@ angular.module('hkApp.controllers')
             submitCaption: 'Lisää',
             type: 2,
             initOptions: function () {
+                var d = moment();
+                $scope.newtransfer.transferdate = d.subtract(d.day(), 'days').startOf('day').toDate();
+
                 options.useNegative = true;
                 options.showToStorage = false;
                 options.showDate = true;
@@ -172,7 +175,7 @@ angular.module('hkApp.controllers')
             factor = -1.0;
         }
 
-        Transfer.create({
+        var xfer = {
             "fromstorageid": n.stofrom.id,
             "tostorageid": n.stodest.id,
             "productid": n.product.id,
@@ -180,11 +183,17 @@ angular.module('hkApp.controllers')
             "absolute": factor * absolute,
             "relative": factor * relative,
             "comment": n.comment,
-            "type": $scope.action.type
+            "type": $scope.action.type,
             //"id": 0,
             //"inserttime": "string",
             //"transfertime": "string"
-        })
+
+        };
+        if ($scope.newtransfer.transferdate) {
+            xfer.transfertime = $scope.newtransfer.transferdate;
+        }
+
+        Transfer.create(xfer)
         .$promise
         .then(function (transfer, err) {
             if (err) {
