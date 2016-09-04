@@ -4,6 +4,11 @@
   <div class="container">
     <p ng-if="action.caption">{{action.caption}}</p>
 
+    <div ng-show="options.showDate">
+    <label for="transferdate">Päivämäärä (Syötä halutulle aikavälille, esim. sunnuntaille.)</label>
+    <input class="form-control" type="date" ng-model="newtransfer.transferdate"/>
+    <br /></div>
+
     <div ng-show="options.showFromStorage">
     <label ng-show="options.showStorageLabels" for="stofrom">Mistä</label>
     <div class="btn-group" data-toggle="buttons">
