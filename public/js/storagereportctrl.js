@@ -9,8 +9,12 @@ angular.module('hkApp.controllers')
         'use strict';
         $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario'];
 
-        $scope.filters = {};
-        $scope.filters.storage = {};
+        var d = moment();
+        $scope.filters = {
+            storage: {},
+            begindate: moment().subtract(moment().day() + 6, 'days').startOf('day').toDate(), //last weeks monday
+            enddate: moment().subtract(moment().day() - 1, 'days').startOf('day').toDate(), //this weeks monday
+        };
 
         $scope.storages = [];
 
@@ -61,17 +65,15 @@ angular.module('hkApp.controllers')
 
             var storageid = $scope.filters.storage.id.toString();
             var queryparams = {
-                begindate: new Date('2016-03-15'),
-                enddate: new Date('2016-04-15'),
+                begindate: $scope.filters.begindate,
+                enddate: $scope.filters.enddate,
                 storageid: storageid
             };
             var salesqueryparams = {
-                begindate: new Date(queryparams.begindate),
-                enddate: new Date(queryparams.enddate),
+                begindate: queryparams.begindate,
+                enddate: queryparams.enddate,
                 storageid: storageid
             };
-            salesqueryparams.begindate.setDate(salesqueryparams.begindate.getDate() + 4);
-            salesqueryparams.enddate.setDate(salesqueryparams.enddate.getDate() + 4);
 
             $q.all([
                 Transfer.allByTime(queryparams).$promise,

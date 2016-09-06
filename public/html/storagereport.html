@@ -9,7 +9,7 @@
 
 <div class="container">
     <table class="table table-striped">
-        <caption>{{ filters.storage.name }}</caption>
+        <caption>{{ filters.storage.name }} {{ filters.begindate | amDateFormat:'DD.MM.YYYY' }} - {{ filters.enddate | amDateFormat:'DD.MM.YYYY' }}</caption>
         <thead>
             <th>Tuote</th>
             <th>alku</th>
