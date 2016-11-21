@@ -11,18 +11,20 @@ import fetch from 'isomorphic-fetch';
 
 const BASE_URL = 'http://localhost:5000/api';
 
-function fetchResponseByURL(relativeURL) {
+function fetchResponseByURL(relativeURL, accessToken) {
+  var headers = new Headers();
+  headers.append('access-token')
   console.log(`fetchResponseByURL: ${BASE_URL}${relativeURL}`);
-  return fetch(`${BASE_URL}${relativeURL}`).then(res => res.json());
+  return fetch(`${BASE_URL}${relativeURL}?access_token=${accessToken}`).then(res => res.json());
 }
 
-function fetchProducts() {
+function fetchProducts(accessToken) {
   console.log('fetchProducts');
-  return fetchResponseByURL('/products/').then(json => json);
+  return fetchResponseByURL('/products/', accessToken).then(json => json);
 }
 
-function fetchProductByURL(relativeURL) {
-  return fetchResponseByURL(relativeURL).then(json => json);
+function fetchProductByURL(relativeURL, accessToken) {
+  return fetchResponseByURL(relativeURL, accessToken).then(json => json);
 }
 
 const QueryType = new GraphQLObjectType({
@@ -35,14 +37,18 @@ const QueryType = new GraphQLObjectType({
     },
     allProducts: {
       type: new GraphQLList(ProductType),
-      resolve: fetchProducts
+      args: {
+        accessToken: { type: GraphQLString }
+      },
+      resolve: (root, args) => fetchProducts(args.accessToken)
     },
     product: {
       type: ProductType,
       args: {
         id: { type: GraphQLString },
+        accessToken: { type: GraphQLString }
       },
-      resolve: (root, args) => fetchResponseByURL(`/product/${args.id}/`),
+      resolve: (root, args) => fetchResponseByURL(`/product/${args.id}/`, args.accessToken),
     },
   })
 });
