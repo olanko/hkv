@@ -21,6 +21,23 @@ if (env === 'production') {
 var api = require('./api/server/server');
 app.use('/api', api);
 
+var graphqlHTTP = require('express-graphql');
+var graphqlSchema = require('./lib/schema').default;
+
+console.log(graphqlSchema);
+
+app.use('/graphql', graphqlHTTP({
+  schema: graphqlSchema,
+  graphiql: true,
+  formatError: function(error) {
+    return {
+      message: error.message,
+      locations: error.locations,
+      stack: error.stack
+    }
+  }
+}));
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
