@@ -4,9 +4,14 @@
   "description": "A sample Node.js app using Express 4",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "./node_modules/.bin/babel graphql -d lib",
+    "postinstall": "npm run build"
   },
   "dependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2016": "^6.16.0",
+    "babel-preset-latest": "^6.16.0",
     "bluebird": "^3.1.1",
     "body-parser": "^1.14.2",
     "compression": "^1.6.0",
@@ -15,6 +20,7 @@
     "ejs": "2.3.3",
     "express": "^4.13.3",
     "express-sslify": "^1.0.1",
+    "graphql": "^0.8.2",
     "lodash": "^3.10.1",
     "loopback": "^2.26.2",
     "loopback-boot": "^2.16.0",
