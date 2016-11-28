@@ -1,9 +1,11 @@
+/*jshint esversion: 6 */
 import {
   GraphQLSchema,
   GraphQLObjectType,
   GraphQLString,
   GraphQLList,
-  GraphQLInt
+  GraphQLInt,
+  GraphQLNonNull,
 } from 'graphql';
 
 import { ProductType } from './producttype';
@@ -17,7 +19,7 @@ function fetchResponseByURL(relativeURL, accessToken) {
   console.log(`fetchResponseByURL: ${BASE_URL}${relativeURL}`);
 
   var headers = new Headers();
-  headers.append('access-token')
+  headers.append('access-token');
 
   return fetch(`${BASE_URL}${relativeURL}?access_token=${accessToken}`).then(res => res.json());
 }
@@ -28,7 +30,7 @@ const QueryType = new GraphQLObjectType({
     allProducts: {
       type: new GraphQLList(ProductType),
       args: {
-        accessToken: { type: GraphQLString }
+        accessToken: { type: new GraphQLNonNull(GraphQLString) }
       },
       resolve: (root, args) => fetchResponseByURL('/products', args.accessToken)
     },
@@ -36,7 +38,7 @@ const QueryType = new GraphQLObjectType({
       type: ProductType,
       args: {
         id: { type: GraphQLInt },
-        accessToken: { type: GraphQLString }
+        accessToken: { type: new GraphQLNonNull(GraphQLString) }
       },
       resolve: (root, args) => fetchResponseByURL(`/products/${args.id}`, args.accessToken),
     },
