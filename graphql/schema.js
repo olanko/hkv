@@ -10,6 +10,7 @@ import {
 
 import { ProductType } from './producttype';
 import { StorageType } from './storagetype';
+import { TransferType } from './transfertype';
 
 import fetch from 'isomorphic-fetch';
 
@@ -45,7 +46,7 @@ const QueryType = new GraphQLObjectType({
     allStorages: {
       type: new GraphQLList(StorageType),
       args: {
-        accessToken: { type: GraphQLString }
+        accessToken: { type: new GraphQLNonNull(GraphQLString) }
       },
       resolve: (root, args) => fetchResponseByURL('/storages', args.accessToken)
     },
@@ -53,9 +54,24 @@ const QueryType = new GraphQLObjectType({
       type: StorageType,
       args: {
         id: { type: GraphQLInt },
-        accessToken: { type: GraphQLString }
+        accessToken: { type: new GraphQLNonNull(GraphQLString) }
       },
       resolve: (root, args) => fetchResponseByURL(`/storages/${args.id}`, args.accessToken),
+    },
+    allTransfers: {
+      type: new GraphQLList(TransferType),
+      args: {
+        accessToken: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve: (root, args) => fetchResponseByURL(`/transfers`, args.accessToken)
+    },
+    transfer: {
+      type: TransferType,
+      args: {
+        id: { type: GraphQLInt },
+        accessToken: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve: (root, args) => fetchResponseByURL(`/transfers/${args.id}`, args.accessToken),
     },
   })
 });
