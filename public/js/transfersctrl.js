@@ -41,6 +41,14 @@ angular.module('hkApp.controllers')
                 }
             }
 
+            var showFromDate = moment().subtract(2, 'months').toISOString();
+
+            if (where) {
+                where = {'and': [where, {'transfertime': {gt: showFromDate}}]};
+            } else {
+                where = {'transfertime': {gt: showFromDate}};
+            }
+
             if (where) {
                 filter = {'filter': {'where': where, 'order': ['transfertime', 'type']}};
             }
