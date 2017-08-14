@@ -30,6 +30,10 @@ config(function ($routeProvider, $locationProvider, $httpProvider) {
       templateUrl: 'html/transfer.html',
       controller: 'TransferCtrl'
     }).
+    when('/correction', {
+      templateUrl: 'html/transfer.html',
+      controller: 'TransferCtrl'
+    }).
     when('/products', {
       templateUrl: 'html/products.html',
       controller: 'ProductsCtrl'

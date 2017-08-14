@@ -15,7 +15,7 @@ angular.module('hkApp.controllers')
 
         $scope.filters = {};
 
-        $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario'];
+        $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario', 'Korjaus'];
 
         $scope.storages = Storage.find();
         $scope.products = Product.find();

@@ -5,12 +5,12 @@
     <p ng-if="action.caption">{{action.caption}}</p>
 
     <div ng-show="options.showDate">
-    <label for="transferdate">Päivämäärä (Syötä päivälle, joka on halutulla aikavälillä, esim. sunnuntaille.)</label>
+    <label for="transferdate">{{action.dateText}}</label>
     <input class="form-control" type="date" ng-model="newtransfer.transferdate"/>
     <br /></div>
 
     <div ng-show="options.showFromStorage">
-    <label ng-show="options.showStorageLabels" for="stofrom">Mistä</label>
+    <label ng-show="options.showStorageLabels" for="stofrom">{{ options.stofromlabel }}</label>
     <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-primary" ng-class="{active: s.id == newtransfer.stofrom.id}" ng-repeat="s in storages | orderBy: 'id' | filter: {type: options.fromStorageType}">
             <input type="radio" id="stofrom" name="stofrom" ng-model="newtransfer.stofrom" ng-value="s"
@@ -20,7 +20,7 @@
     <br /></div>
 
     <div ng-show="options.showToStorage">
-    <label ng-show="options.showStorageLabels" for="stodest">Minne</label>
+    <label ng-show="options.showStorageLabels" for="stodest">{{ options.stodestlabel }}</label>
     <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-primary" ng-class="{active: s.id == newtransfer.stodest.id}" ng-repeat="s in storages | orderBy: 'id'| filter: {type: options.fromStorageType}">
             <input type="radio" id="stodest" ng-model="newtransfer.stodest" ng-value="s"
@@ -40,14 +40,14 @@
     <select class="form-control" name="product" ng-model="newtransfer.product" ng-change="changeProduct()" ng-options="product.name for product in products | orderBy: 'pid' | filter: { active: true }" >
     </select>
 
-    <label for="qty">Miten paljon</label>
+    <label for="qty">{{ options.qtylabel }}</label>
     <div id="qtybuttons" class="btn-group">
         <button class="btn btn-primary" ng-class="{active: newstransfer.qty == q.q}" ng-repeat="q in newtransfer.product.qs" ng-click="changeQuickQty(q.q, this)"
                 autocomplete="off">{{ q.n }}
         </button>
     </div>
 
-    <input class="form-control" type="number" min="0" step="1" id="qty" name="qty" ng-model="newtransfer.qty"/>
+    <input class="form-control" type="number" min="{{ options.minqty }}" step="1" id="qty" name="qty" ng-model="newtransfer.qty"/>
 
     <label for="newtransfer.comment">Kommentti</label>
     <input class="form-control" type="text" id="product.name" name="newtransfer.comment" ng-model="newtransfer.comment"/>

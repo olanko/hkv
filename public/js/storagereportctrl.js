@@ -7,7 +7,7 @@ angular.module('hkApp.controllers')
     ['$scope', '$routeParams', '$q', 'Storage', 'Product', 'Transfer',
     function  ($scope, $routeParams, $q, Storage, Product, Transfer) {
         'use strict';
-        $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario'];
+        $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario', 'Korjaus'];
 
         $scope.filters = {};
         $scope.filters.storage = {};

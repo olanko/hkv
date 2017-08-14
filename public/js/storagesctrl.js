@@ -11,7 +11,7 @@ angular.module('hkApp.controllers')
         $scope.products = [];
         $scope.datenow = moment();
 
-        $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario'];
+        $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario', 'Korjaus'];
 
         var where = {};
         if ($scope.storageid > 0) {

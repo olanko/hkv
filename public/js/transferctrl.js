@@ -14,7 +14,11 @@ angular.module('hkApp.controllers')
         showToStorage: true,
         showStorageLabels: true,
         showWaste: false,
-        showDate: false
+        showDate: false,
+        minqty: 0,
+        stofromlabel: 'Mistä',
+        stodestlabel: 'Minne',
+        qtylabel: 'Miten paljon'
     };
 
     $scope.actions = {
@@ -61,6 +65,7 @@ angular.module('hkApp.controllers')
         '/sales': {
             caption: 'Myynti',
             submitCaption: 'Lisää',
+            dateText: 'Päivämäärä (Syötä päivälle, joka on halutulla aikavälillä, esim. sunnuntaille.)',
             type: 2,
             initOptions: function () {
                 var d = moment();
@@ -103,6 +108,36 @@ angular.module('hkApp.controllers')
             },
             alert: function (n) {
                 return '' + n.product.name + ' ' + n.stofrom.name + ' määrä ' + n.qty;
+            }
+        },
+        '/correction': {
+            caption: 'Korjaus',
+            submitCaption: 'Kirjaa',
+            dateText: 'Päivämäärä',
+            type: 4,
+            initOptions: function () {
+                var d = moment();
+                $scope.newtransfer.transferdate = d.subtract(d.day(), 'days').startOf('day').toDate();
+
+                options.showFromStorage = false;
+                options.showToStorage = true;
+
+                options.showDate = true;
+                options.minqty = "";
+
+                options.stodestlabel = 'Paikka';
+                options.qtylabel = 'Korjaus';
+            },
+            initData: function () {
+                $scope.newtransfer.stodest = $scope.newtransfer.stodest || $scope.storages[0];
+            },
+            preAdd: function () {
+                $scope.newtransfer.stofrom = $scope.newtransfer.stodest;
+                $scope.newtransfer.comment = $scope.newtransfer.comment || '';
+            },
+            alert: function (n) {
+                console.log(n);
+                return '' + n.qty + ' ' + n.product.name + ' ' + n.stodest.name + (n.comment ? ': ' + n.comment : '');
             }
         }
     };
@@ -203,7 +238,5 @@ angular.module('hkApp.controllers')
             $scope.alerts.push({transferid: transfer.id, type: 'success', time: moment(), msg: t});
             $scope.newtransfer.comment = '';
         });
-
-
     };
 }]);

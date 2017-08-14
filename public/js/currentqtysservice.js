@@ -41,6 +41,13 @@ angular.module('hkApp.controllers')
                             }
                         }
 
+                        /* Correction */
+                        if (transfers[i].type === 4) {
+                            if (+transfers[i].tostorageid === storage.id) {
+                                transfers[i].change += +transfers[i].relative;
+                            }
+                        }
+
                         /* Sales */
                         if (transfers[i].type === 2) {
                             transfers[i].change += +transfers[i].relative;

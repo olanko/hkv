@@ -5,7 +5,7 @@ angular.module('hkApp.controllers')
     function  ($scope, $routeParams, $q, Storage, Product, Transfer, CurrentQtysService) {
         var productid = $routeParams.productid;
 
-        $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario'];
+        $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario', 'Korjaus'];
 
         $scope.filters = {};
         $scope.filters.storage = {};
