@@ -124,6 +124,8 @@ angular.module('hkApp.controllers')
 
                 options.showDate = true;
                 options.minqty = "";
+                
+                options.showWaste = true;
 
                 options.stodestlabel = 'Paikka';
                 options.qtylabel = 'Korjaus';
