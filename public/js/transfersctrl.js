@@ -41,7 +41,7 @@ angular.module('hkApp.controllers')
                 }
             }
 
-            var showFromDate = moment().subtract(2, 'months').toISOString();
+            var showFromDate = moment().subtract(4, 'months').toISOString();
 
             if (where) {
                 where = {'and': [where, {'transfertime': {gt: showFromDate}}]};
