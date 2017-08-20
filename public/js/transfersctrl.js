@@ -14,6 +14,7 @@ angular.module('hkApp.controllers')
         $scope.datenow = moment();
 
         $scope.filters = {};
+        $scope.filters.showFromDate = moment().subtract(2, 'months').toDate();
 
         $scope.types = ['Siirto', 'Toimitus', 'Myynti', 'Inventaario', 'Korjaus'];
 
@@ -41,12 +42,10 @@ angular.module('hkApp.controllers')
                 }
             }
 
-            var showFromDate = moment().subtract(4, 'months').toISOString();
-
             if (where) {
-                where = {'and': [where, {'transfertime': {gt: showFromDate}}]};
+                where = {'and': [where, {'transfertime': {gt: $scope.filters.showFromDate}}]};
             } else {
-                where = {'transfertime': {gt: showFromDate}};
+                where = {'transfertime': {gt: $scope.filters.showFromDate}};
             }
 
             if (where) {
